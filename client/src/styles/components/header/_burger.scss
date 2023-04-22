@@ -1,0 +1,60 @@
+@import '../../mixin/mini';
+
+.burger-bottom__catalog {
+
+  &--btn {
+    @include flex-v-center;
+    background-color: var(--accientColor);
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  &--text {
+    color: var(--white);
+  }
+
+  &--icon {
+    display: block;
+    width: 40px;
+    height: 30px;
+    cursor: pointer;
+    margin-right: 15px;
+  }
+
+  &--line {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 3px;
+    margin: 5px 0;
+    background-color: var(--white);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  &--open {
+    .burger-bottom__catalog--line:first-child {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .burger-bottom__catalog--line:nth-child(2) {
+      opacity: 0;
+    }
+    .burger-bottom__catalog--line:last-child {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    .burger-bottom__catalog__list {
+      display: block;
+    }
+  }
+
+  &__list {
+    display: none;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+
+    &__item {
+      margin-bottom: 10px;
+    }
+  }
+}

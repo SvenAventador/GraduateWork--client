@@ -1,0 +1,37 @@
+@import '../../mixin/mini';
+
+.header-bottom__search {
+  @include flex-all-sb;
+  border: 2px solid var(--borderColor);
+  padding: 0 20px;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: .3s ease-in-out;
+
+  &--string {
+    border: none;
+    width: 550px;
+    height: 50px;
+    outline: none;
+  }
+
+  &--focus {
+    transition: .3s ease-in-out;
+    -webkit-box-shadow: -5px 1px 50px 11px rgba(0,0,0,0.24);
+    box-shadow: 1px 0 40px 1px rgba(0,0,0,0.24);
+  }
+
+  &--active {
+    .header-bottom__search--btn-reset {
+      opacity: 100%;
+    }
+  }
+
+  &--btn {
+    @include flex-all-sb;
+
+    &-reset {
+      opacity: 0;
+    }
+  }
+}

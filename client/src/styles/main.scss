@@ -1,0 +1,26 @@
+/*base*/
+@import "fonts";
+@import "globals";
+@import "overalls";
+@import "vars";
+
+/*mixins*/
+@import "mixin/mini";
+@import "mixin/font-face";
+
+/*pages*/
+
+/*components*/
+
+  /** header **/
+  @import "components/header/header";
+  @import "components/header/burger";
+  @import "components/header/search";
+
+  /** main page **/
+  @import "components/main/categories";
+  @import "components/main/advantages";
+
+/*vendor*/
+@import "vendors";
+

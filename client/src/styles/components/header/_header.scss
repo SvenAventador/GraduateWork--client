@@ -1,0 +1,76 @@
+@import '../../mixin/mini';
+
+.header {
+  &-top {
+    @include flex-all-sb;
+  }
+
+  &-bottom {
+    margin-top: 1rem;
+    @include flex-all-sb;
+
+    &__logo {
+      &-image {
+        width: 220px;
+        height: 80px;
+      }
+    }
+
+    &__cart {
+      @include flex-v-center;
+      &-link {
+        @include flex-v-center;
+        justify-content: center;
+        flex-direction: column;
+      }
+    }
+
+    &__auth {
+      @include flex-v-center;
+      &-link {
+        @include flex-v-center;
+        justify-content: center;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.nav-header-top {
+  &__list {
+    @include flex-all-sb
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    display: block;
+    height: 2px;
+    width: 0;
+    background: var(--accientColor);
+    transition: width 0.5s ease 0s, left 0.5s ease 0s;
+  }
+
+  &__link:hover::after {
+    width: 100%;
+    left: 0;
+  }
+
+  &__item:not(:last-child) {
+    margin-right: 1.5rem;
+  }
+}
+
+.socials-header-top {
+  @include flex-all-sb;
+
+  &__item:not(:last-child) {
+    margin-right: 1.5rem;
+  }
+}
