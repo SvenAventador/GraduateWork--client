@@ -1,0 +1,61 @@
+@import '../../../mixin/mini';
+
+.bestseller {
+
+  &__card {
+    width: 200px;
+    height: 300px;
+    margin: 1rem auto;
+    padding: 90px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  &__card:hover {
+    -webkit-box-shadow: 4px 4px 2px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 4px 4px 2px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 4px 4px 2px 0 rgba(0, 0, 0, 0.2);
+    border-color: #aaa;
+  }
+
+  &__top img {
+    width: max-content;
+    height: max-content;
+  }
+
+  &__bottom {
+    margin-top: 10px;
+    @include flex;
+    flex-flow: column nowrap;
+  }
+
+  &__info {
+    font-size: 20px;
+  }
+
+  &__buy {
+    @include flex-all-sb
+  }
+
+  &__price {
+    font-size: 20px;
+  }
+
+  &__cart {
+    padding: 5px 15px;
+    border: 1px solid var(--borderColor);
+    border-radius: 30px;
+    transition: 0.5s ease-in-out;
+  }
+
+  &__cart:hover {
+    background-color: var(--accientColor);
+    transition: 0.5s ease-in-out;
+  }
+
+  &__cart:hover #Dribbble-Light-Preview {
+    fill: var(--black);
+  }
+
+}

@@ -20,6 +20,13 @@
   /** main page **/
   @import "components/main/categories";
   @import "components/main/advantages";
+  @import "components/main/brands";
+  @import "components/main/bestseller/bestseller";
+  @import "components/main/bestseller/bestsellerItem";
+  @import "components/main/socials";
+
+  /** footer **/
+  @import "components/footer/footer";
 
 /*vendor*/
 @import "vendors";

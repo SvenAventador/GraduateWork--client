@@ -1,0 +1,18 @@
+@import '../../../mixin/mini';
+
+.bestseller {
+  &__title {
+    font-size: 30px;
+    @include flex-all-center
+  }
+
+  &__card {
+    width: max-content !important;
+    height: max-content !important;
+  }
+}
+
+.slider .slick-slide .bestseller__card {
+  width: 500px;
+  height: 300px;
+}

@@ -1,0 +1,88 @@
+@import '../../mixin/mini';
+
+.footer {
+  margin: 1rem auto;
+  width: 100%;
+  border-top: 1px solid var(--borderColor);
+
+  &-container {
+    width: 1450px;
+    padding: 0 30px;
+    margin: 2rem auto;
+    @include flex;
+    flex-flow: row nowrap;
+  }
+
+  &-left {
+    margin-right: 10rem;
+
+    &__contact-info {
+      font-size: 20px;
+      margin-bottom: 1rem;
+    }
+
+    &__socials {
+      @include flex-v-center;
+      margin-bottom: 1rem;
+
+      &--link #Dribbble-Light-Preview {
+        fill: var(--accientColor);
+      }
+
+      &--link:first-child {
+        margin-right: 1rem;
+      }
+    }
+
+    &__phones {
+      @include flex;
+      flex-flow: column nowrap;
+
+      &--link {
+        font-size: 20px;
+      }
+
+      &--link:first-child {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  &-right {
+    height: auto;
+    width: 800px;
+    @include flex;
+    flex-flow: column nowrap;
+
+    &-nav {
+
+      &__list {
+        @include flex-all-sb;
+        margin-bottom: 1.5rem;
+      }
+
+      &__item {
+        font-size: 18px;
+        color: var(--accientColor);
+        transition: 0.5s ease-in-out;
+      }
+
+      &__item:hover {
+        color: var(--hoverColor);
+        transition: 0.5s ease-in-out;
+      }
+    }
+
+    &__copyright {
+      font-size: 17px;
+      color: var(--secondaryColor);
+      margin-bottom: 1.5rem;
+    }
+
+    &__description {
+      font-size: 17px;
+      color: var(--secondaryColor);
+      width: 80%;
+    }
+  }
+}

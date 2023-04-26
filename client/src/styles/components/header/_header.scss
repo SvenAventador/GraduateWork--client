@@ -1,8 +1,19 @@
 @import '../../mixin/mini';
 
 .header {
+  width: 100%;
+
+  &-container {
+    @include flex-all-sb;
+    width: 1450px;
+    align-items: center;
+    padding: 0 30px;
+    margin: 0.5rem auto;
+  }
+
   &-top {
     @include flex-all-sb;
+    border-bottom: 1px solid var(--borderColor);
   }
 
   &-bottom {
@@ -11,7 +22,7 @@
 
     &__logo {
       &-image {
-        width: 220px;
+        width: 240px;
         height: 80px;
       }
     }

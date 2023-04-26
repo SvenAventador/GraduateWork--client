@@ -1,0 +1,36 @@
+@import '../../mixin/mini';
+
+.socials {
+  margin: 3rem auto;
+  &__title {
+    @include flex-all-center;
+    font-size: 30px;
+  }
+
+  &__list {
+    @include flex-all-sb;
+    margin: 2rem auto;
+  }
+
+  &__item {
+    @include flex-all-sb;
+
+    &-img {
+      margin-right: 1.3rem;
+      padding: 5px;
+      background-color: #F9F9FB;
+      border-radius: 50%;
+    }
+
+    &-link {
+      &--title {
+        color: #aaaaaa;
+      }
+
+      &--site {
+        color: var(--accientColor);
+        font-style: normal;
+      }
+    }
+  }
+}

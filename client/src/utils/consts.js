@@ -20,3 +20,19 @@ export const GUARANTEE_ROUTE = "/guarantee"
 export const LOYAL_CUSTOMERS_ROUTE = "/loyal-customers"
 export const TRADE_IN_ROUTE = "/trade-in"
 export const NOTFOUND_ROUTE = "/not-found"
+
+/** slider settings **/
+export const settings = {
+    dots: false,
+    infinite: false,
+    initialSlide: 0,
+    centerPadding: "200px",
+    arrows: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: false,
+    swipeToSlide: false,
+    draggable: false,
+    speed: 500,
+    autoplaySpeed: 5000
+};
