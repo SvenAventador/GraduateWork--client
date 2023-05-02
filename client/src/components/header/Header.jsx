@@ -10,13 +10,15 @@ import {
     MAIN_ROUTE,
     TRADE_IN_ROUTE,
     LOGIN_ROUTE,
-    CART_ROUTE
+    CART_ROUTE,
+    FAVOURITE_ROUTE
 } from "../../utils/consts";
 
 import {ReactComponent as WhatsApp} from '../../assets/svg/header/wa.svg'
 import {ReactComponent as Telegram} from '../../assets/svg/header/tg.svg'
 import {ReactComponent as Auth} from '../../assets/svg/header/auth.svg'
 import {ReactComponent as Cart} from '../../assets/svg/header/cart.svg'
+import {ReactComponent as FavouriteDevice} from '../../assets/svg/header/heart.svg'
 
 import logo from '../../assets/images/logo.png'
 import BurgerMenu from "./BurgerMenu";
@@ -119,6 +121,17 @@ const Header = () => {
 
                 <SearchForm />
 
+                <div className="header-bottom__favourite">
+                    <NavLink to={FAVOURITE_ROUTE + '/1'} className="header-bottom__favourite-link">
+                        <div className="header-bottom__favourite-button--img">
+                            <FavouriteDevice />
+                        </div>
+                        <div className="header-bottom__favourite-button--text">
+                            <p>Избранное</p>
+                        </div>
+                    </NavLink>
+                </div>
+
                 <div className="header-bottom__cart">
                     <NavLink to={CART_ROUTE + '/1'} className="header-bottom__cart-link">
                         <div className="header-bottom__cart-button--img">
@@ -140,7 +153,6 @@ const Header = () => {
                         </div>
                     </NavLink>
                 </div>
-
             </div>
 
         </header>

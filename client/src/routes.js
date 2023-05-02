@@ -14,7 +14,7 @@ import {
     GUARANTEE_ROUTE,
     LOYAL_CUSTOMERS_ROUTE,
     TRADE_IN_ROUTE,
-    NOTFOUND_ROUTE
+    NOTFOUND_ROUTE, FAVOURITE_ROUTE
 } from "./utils/consts";
 
 import PersonalArea from "./pages/user/PersonalArea";
@@ -33,6 +33,7 @@ import Guarantee from "./pages/user/info/Guarantee";
 import LoyalCustomers from "./pages/user/info/LoyalCustomers";
 import TradeIn from "./pages/user/info/TradeIn";
 import NotFound from "./pages/empty/NotFound";
+import Favourite from "./pages/user/Favourite";
 
 /**
  * Роутеры, которые будут доступы только авторизированным пользователям.
@@ -51,7 +52,11 @@ export const authRoutes = [
     {
         path: CART_ROUTE + '/:id',
         Component: Cart
-    }
+    },
+    {
+        path: FAVOURITE_ROUTE + '/:userId',
+        Component: Favourite
+    },
 ]
 
 /**

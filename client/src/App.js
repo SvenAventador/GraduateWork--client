@@ -8,8 +8,10 @@ const App = () => {
     return (
         <BrowserRouter>
             <Header/>
-            <AppRoute/>
-            <Footer />
+            <main className="main">
+                <AppRoute/>
+            </main>
+            <Footer/>
         </BrowserRouter>
     );
 };

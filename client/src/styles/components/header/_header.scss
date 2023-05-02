@@ -27,8 +27,27 @@
       }
     }
 
+    &__favourite {
+      @include flex-v-center;
+
+      &-link {
+        @include flex-v-center;
+        justify-content: center;
+        flex-flow: column nowrap;
+      }
+
+      &:hover > #Favourite {
+        animation: heartbeat 1s infinite;
+      }
+    }
+
+    &__favourite:hover #Favourite {
+      animation: heartbeat 1s infinite;
+    }
+
     &__cart {
       @include flex-v-center;
+
       &-link {
         @include flex-v-center;
         justify-content: center;
@@ -83,5 +102,17 @@
 
   &__item:not(:last-child) {
     margin-right: 1.5rem;
+  }
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2)
+  }
+  100% {
+    transform: scale(1)
   }
 }

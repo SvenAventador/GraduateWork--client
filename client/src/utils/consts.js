@@ -12,6 +12,7 @@ export const CART_ROUTE = '/cart'
 export const CURRENT_DEVICE_ROUTE = '/device'
 export const DEVICES_ROUTE = '/devices'
 export const MAIN_ROUTE = '/'
+export const FAVOURITE_ROUTE = '/favourite'
 export const ABOUT_ROUTE = "/about"
 export const CONTACTS_ROUTE = "/contacts"
 export const DELIVERY_ROUTE = "/delivery"

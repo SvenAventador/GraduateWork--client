@@ -2,16 +2,28 @@ import React from 'react';
 
 const BurgerMenu = () => {
     const [isActive, setIsActive] = React.useState(false)
-
-    /**
-     * Смена состояния.
-     */
+    const burgerRef = React.useRef(null)
+    
     const toggleMenu = () => {
         setIsActive(!isActive)
     }
 
+    React.useEffect(() => {
+        const clickOutside = (event) => {
+            if (burgerRef.current && !burgerRef.current.contains(event.target))
+                setIsActive(false)
+        }
+
+        document.addEventListener('mousedown', clickOutside)
+
+        return () => {
+            document.removeEventListener('mousedown', clickOutside)
+        }
+    }, [burgerRef])
+
     return (
-        <div className={`burger-bottom__catalog ${isActive ? "burger-bottom__catalog--open" : ""}`}>
+        <div className={`burger-bottom__catalog ${isActive ? "burger-bottom__catalog--open" : ""}`}
+             ref={burgerRef}>
             <div className="burger-bottom__catalog--btn"
                  onClick={toggleMenu}>
                 <span className="burger-bottom__catalog--icon">

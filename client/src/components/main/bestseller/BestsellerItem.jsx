@@ -1,12 +1,20 @@
 import React from 'react';
 
 const BestsellerItem = (props) => {
-    const { id, image, name, brand, price, cart, onClick } = props;
+    const {
+        id,
+        image,
+        name,
+        brand,
+        price,
+        cart,
+        onClick
+    } = props;
     return (
         <div>
             <div key={id}
                  className="bestseller__card"
-                 onClick={() => onClick}>
+                 onClick={onClick}>
                 <div className="bestseller__top">
                     <img src={image}
                          alt={`Изображение товара ${name}`}
