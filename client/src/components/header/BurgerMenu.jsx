@@ -1,9 +1,14 @@
 import React from 'react';
+import {observer} from "mobx-react-lite";
+import {Context} from "../../index";
+import {getAllTypes} from "../../http/deviceApi";
+import {useNavigate} from "react-router-dom";
+import {DEVICES_ROUTE} from "../../utils/consts";
 
-const BurgerMenu = () => {
+const BurgerMenu = observer(() => {
     const [isActive, setIsActive] = React.useState(false)
     const burgerRef = React.useRef(null)
-    
+
     const toggleMenu = () => {
         setIsActive(!isActive)
     }
@@ -21,6 +26,14 @@ const BurgerMenu = () => {
         }
     }, [burgerRef])
 
+    const {device} = React.useContext(Context);
+
+    React.useEffect(() => {
+        getAllTypes().then(data => device.setType(data))
+    }, [device]);
+
+    const history = useNavigate()
+
     return (
         <div className={`burger-bottom__catalog ${isActive ? "burger-bottom__catalog--open" : ""}`}
              ref={burgerRef}>
@@ -35,16 +48,21 @@ const BurgerMenu = () => {
             </div>
 
             <ul className="burger-bottom__catalog__list">
-                <li className="burger-menu__item">Item 1</li>
-                <li className="burger-menu__item">Item 2</li>
-                <li className="burger-menu__item">Item 3</li>
-                <li className="burger-menu__item">Item 4</li>
-                <li className="burger-menu__item">Item 5</li>
-                <li className="burger-menu__item">Item 6</li>
-                <li className="burger-menu__item">Item 7</li>
+                {device.type.map((type) => (
+                    <li className="burger-bottom__catalog__item"
+                        onClick={() => {
+                            device.setSelectedTypes(type)
+                            history(DEVICES_ROUTE)
+                            setIsActive(false)
+                            }
+                        }
+                        key={type.id}>
+                        {type.typeName}
+                    </li>
+                ))}
             </ul>
         </div>
     );
-};
+});
 
 export default BurgerMenu;

@@ -41,3 +41,15 @@ input[type="search"]::-webkit-search-results-decoration {
   font-size: 60px; /* новый размер стрелок */
   color: var(--secondaryColor); /* новый цвет стрелок */
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.5%);
+  height: 100vh;
+  width: 100vw;
+}

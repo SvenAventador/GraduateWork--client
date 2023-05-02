@@ -33,6 +33,24 @@
   }
 
   &--open {
+    .burger-bottom__catalog__list {
+      background-color: var(--white);
+      position: absolute;
+      z-index: 100;
+      margin-top: 0.5rem;
+      width: max-content;
+      border: 1px solid var(--borderColor);
+      border-radius: 10px;
+    }
+
+    .burger-bottom__catalog__item {
+      font-size: 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--borderColor);
+      position: relative;
+      padding: 1rem 2rem;
+      cursor: pointer;
+    }
     .burger-bottom__catalog--line:first-child {
       transform: translateY(8px) rotate(45deg);
     }

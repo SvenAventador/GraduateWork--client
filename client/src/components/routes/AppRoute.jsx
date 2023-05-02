@@ -2,15 +2,15 @@ import React from 'react';
 import {Routes, Route, Navigate} from "react-router-dom";
 import {authRoutes, adminRoute, publicRoutes} from "../../routes";
 import {NOTFOUND_ROUTE} from "../../utils/consts";
+import {Context} from "../../index";
 
 const AppRoute = () => {
-    const role = 'admin'
-    const isAuth = true
+    const {user} = React.useContext(Context)
     return (
         <Routes>
 
             {
-                isAuth &&
+                user.isAuth &&
                 authRoutes.map( ({path, Component}) =>
                     <Route key={path}
                            path={path}
@@ -19,8 +19,8 @@ const AppRoute = () => {
             }
 
             {
-                isAuth &&
-                role === 'admin' &&
+                user.isAuth &&
+                user.user.role === 'ADMIN' &&
                     <Route key={adminRoute.path}
                            path={adminRoute.path}
                            element={<adminRoute.Component />} />

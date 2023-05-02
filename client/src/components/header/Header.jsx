@@ -23,8 +23,18 @@ import {ReactComponent as FavouriteDevice} from '../../assets/svg/header/heart.s
 import logo from '../../assets/images/logo.png'
 import BurgerMenu from "./BurgerMenu";
 import SearchForm from "./SearchForm";
+import {Context} from "../../index";
+import {observer} from "mobx-react-lite";
+import {getAllTypes} from "../../http/deviceApi";
 
-const Header = () => {
+const Header = observer(() => {
+    const {user, device} = React.useContext(Context)
+
+    React.useEffect(() => {
+        getAllTypes().then(data => device.setType(data))
+    }, [])
+
+
     return (
 
         <header className="header">
@@ -149,7 +159,14 @@ const Header = () => {
                             <Auth />
                         </div>
                         <div className="header-bottom__auth-button--text">
-                            <p>Войти</p>
+                            <p>
+                                {
+                                    user.isAuth ?
+                                        user.user.userName
+                                        :
+                                        "Войти"
+                                }
+                            </p>
                         </div>
                     </NavLink>
                 </div>
@@ -157,6 +174,6 @@ const Header = () => {
 
         </header>
     );
-};
+});
 
 export default Header;
