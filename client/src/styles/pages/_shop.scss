@@ -1,0 +1,36 @@
+@import '../mixin/mini';
+
+.shop {
+  @include flex;
+  flex-flow: row nowrap;
+
+  &__left {
+    margin-right: 3rem;
+
+    &--btn {
+      @include flex-all-center;
+      &-clear {
+        background-color: var(--accientColor);
+        color: var(--white);
+        border-radius: 30px;
+        padding: 10px 30px;
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  &__right {
+    flex-flow: column;
+    margin-top: 1rem;
+
+    &--top {
+      @include flex-all-center
+    }
+
+    &--bottom {
+      @include flex-all-center;
+      position: absolute;
+      margin-top: 3rem;
+    }
+  }
+}

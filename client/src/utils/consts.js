@@ -9,7 +9,7 @@ export const ADMIN_ROUTE = '/admin-panel'
 export const PERSONAL_AREA_ROUTE = '/personal-route'
 export const ORDER_MENU_ROUTE = '/your-orders'
 export const CART_ROUTE = '/cart'
-export const CURRENT_DEVICE_ROUTE = '/device'
+export const CURRENT_DEVICE_ROUTE = '/devices'
 export const DEVICES_ROUTE = '/devices'
 export const MAIN_ROUTE = '/'
 export const FAVOURITE_ROUTE = '/favourite'
@@ -36,4 +36,38 @@ export const settings = {
     draggable: false,
     speed: 500,
     autoplaySpeed: 5000
+};
+
+export const imageSetting = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    responsive: [
+        {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: false,
+            },
+        },
+        {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                initialSlide: 2,
+            },
+        },
+        {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+            },
+        },
+    ],
 };

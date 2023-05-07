@@ -12,6 +12,12 @@ const BurgerMenu = observer(() => {
     const toggleMenu = () => {
         setIsActive(!isActive)
     }
+    
+    const selectNewType = (type) => {
+        device.setSelectedTypes(type)
+        history(DEVICES_ROUTE)
+        setIsActive(false)
+    }
 
     React.useEffect(() => {
         const clickOutside = (event) => {
@@ -50,12 +56,7 @@ const BurgerMenu = observer(() => {
             <ul className="burger-bottom__catalog__list">
                 {device.type.map((type) => (
                     <li className="burger-bottom__catalog__item"
-                        onClick={() => {
-                            device.setSelectedTypes(type)
-                            history(DEVICES_ROUTE)
-                            setIsActive(false)
-                            }
-                        }
+                        onClick={() => selectNewType(type)}
                         key={type.id}>
                         {type.typeName}
                     </li>

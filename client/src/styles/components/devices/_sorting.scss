@@ -1,0 +1,50 @@
+@import '../../mixin/mini';
+
+.sorting {
+  height: max-content;
+  width: 350px;
+  display: block;
+  border: 3px solid var(--borderColor);
+  margin: 1rem 0;
+  word-wrap: break-word;
+
+  &__title {
+    text-align: center;
+    border-bottom: 2px solid var(--borderColor);
+    font-family: 'Play', sans-serif;
+    font-size: 15px;
+    padding: 10px 46px;
+  }
+
+  &__list {
+    @include flex;
+    flex-flow: column nowrap;
+  }
+
+  &__item {
+    text-align: left;
+    border-bottom: 1px solid var(--borderColor);
+    font-family: 'Play', sans-serif;
+    font-size: 17px;
+    padding: 5px 20px;
+    cursor: pointer;
+    @include flex-v-center;
+  }
+
+  &__item--active {
+    background-color: var(--accientColor);
+    color: var(--white);
+  }
+
+  &__btn {
+    text-align: center;
+
+    &--show {
+      background-color: var(--accientColor);
+      color: var(--white);
+      border-radius: 30px;
+      padding: 10px 30px;
+      margin: 10px 0;
+    }
+  }
+}

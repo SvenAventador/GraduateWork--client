@@ -10,6 +10,8 @@
 
 /*pages*/
 @import "pages/auth";
+@import "pages/shop";
+@import "pages/device";
 
 /*components*/
 
@@ -25,6 +27,14 @@
   @import "components/main/bestseller/bestseller";
   @import "components/main/bestseller/bestsellerItem";
   @import "components/main/socials";
+
+  /** shop page**/
+  @import "components/devices/sorting";
+  @import "components/devices/deviceItem";
+  @import "components/devices/deviceList";
+
+  /** device page **/
+  @import "components/device/imageSlider";
 
   /** footer **/
   @import "components/footer/footer";

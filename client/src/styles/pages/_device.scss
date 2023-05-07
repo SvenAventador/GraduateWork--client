@@ -1,0 +1,98 @@
+.phone-info {
+  &__top {
+    &--image {
+      display: flex;
+      flex-shrink: 0;
+    }
+
+    &--image img {
+      flex-shrink: 0;
+      width: 300px;
+      height: 300px;
+    }
+  }
+
+  &__about {
+    padding-left: 50px;
+
+    &--name {
+      font-family: 'Play', sans-serif;
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    &--star-list {
+      margin-bottom: 10px;
+    }
+
+    &--star-list img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  &__additionally {
+    align-items: center;
+
+    &--list {
+      align-items: center;
+    }
+
+    &--price {
+      font-family: 'Play', sans-serif;
+      font-size: 25px;
+      margin-right: 20px;
+    }
+
+    &--favourite {
+      width: 30px;
+      height: 30px;
+      margin-right: 20px;
+    }
+
+    &--buy {
+      background-color: var(--accientColor);
+      color: var(--whiteColor);
+      border-radius: 30px;
+      padding: 10px 30px;
+      margin: 10px 0;
+    }
+
+    &--descr {
+      margin: 20px 0;
+      font-family: 'Play', sans-serif;
+      font-size: 18px;
+      text-align: justify;
+      color: #848484;
+    }
+  }
+
+  &__bottom {
+    margin-top: 40px;
+    margin-bottom: 60px;
+
+    &--title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    &--data {
+      font-family: 'Manrope', sans-serif;
+      font-size: 25px;
+      color: #777780;
+      margin-right: 378px;
+      justify-content: space-between;
+
+      &-title {
+        width: max-content;
+      }
+
+      &-descr {
+        width: max-content;
+        text-align: justify;
+        right: 0;
+      }
+    }
+  }
+}

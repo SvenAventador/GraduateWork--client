@@ -132,7 +132,8 @@ const Header = observer(() => {
                 <SearchForm />
 
                 <div className="header-bottom__favourite">
-                    <NavLink to={FAVOURITE_ROUTE + '/1'} className="header-bottom__favourite-link">
+                    <NavLink to={`${FAVOURITE_ROUTE}/${user.user.id}`}
+                             className="header-bottom__favourite-link">
                         <div className="header-bottom__favourite-button--img">
                             <FavouriteDevice />
                         </div>
@@ -143,7 +144,8 @@ const Header = observer(() => {
                 </div>
 
                 <div className="header-bottom__cart">
-                    <NavLink to={CART_ROUTE + '/1'} className="header-bottom__cart-link">
+                    <NavLink to={`${CART_ROUTE}/${user.user.id}`}
+                             className="header-bottom__cart-link">
                         <div className="header-bottom__cart-button--img">
                             <Cart />
                         </div>
@@ -154,7 +156,8 @@ const Header = observer(() => {
                 </div>
 
                 <div className="header-bottom__auth">
-                    <NavLink to={LOGIN_ROUTE} className="header-bottom__auth-link">
+                    <NavLink to={LOGIN_ROUTE}
+                             className="header-bottom__auth-link">
                         <div className="header-bottom__auth-button--img">
                             <Auth />
                         </div>

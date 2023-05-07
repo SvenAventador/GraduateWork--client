@@ -1,0 +1,59 @@
+@import '../../mixin/mini';
+
+.device {
+  width: 280px;
+  height: max-content;
+  border-radius: 5px;
+  border: 1px solid var(--borderColor);
+  padding: 2rem;
+  cursor: pointer;
+
+  &__image {
+    position: relative;
+    @include flex-all-center;
+  }
+
+  &__info {
+    @include flex-v-center;
+    font-size: 18px;
+    word-wrap: anywhere;
+  }
+
+  &__rating {
+    @include flex-v-center;
+    margin-top: .3rem;
+
+    &--value {
+      font-size: 17px;
+    }
+  }
+
+  &__buying {
+    @include flex-all-sb;
+    margin-top: 1rem;
+
+    &--price {
+      color: var(--secondaryColor);
+      font-size: 16px;
+    }
+
+    &--btn {
+      padding: 5px 20px;
+      border: 1px solid var(--borderColor);
+      border-radius: 5px;
+
+      &:hover {
+        #Dribbble-Light-Preview {
+          fill: var(--accientColor);
+        }
+      }
+    }
+  }
+
+  &:hover {
+    -webkit-box-shadow: 4px 4px 2px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 4px 4px 2px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 4px 4px 2px 0 rgba(0, 0, 0, 0.2);
+    border-color: #aaa;
+  }
+}

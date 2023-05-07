@@ -1,0 +1,7 @@
+@import '../../mixin/mini';
+
+.main-image {
+  @include flex;
+  justify-content: flex-start;
+  flex-flow: row nowrap;
+}

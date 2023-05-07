@@ -1,0 +1,12 @@
+@import '../../mixin/mini';
+
+.device__list {
+  @include flex-all-sb;
+  flex-flow: row wrap;
+  gap: 3rem;
+  margin-left: 2.4rem;
+
+  &--not-found {
+    font-size: 30px;
+  }
+}

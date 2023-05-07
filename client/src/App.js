@@ -12,16 +12,14 @@ const App = observer(() => {
     const {user} = React.useContext(Context)
     const [loading, setLoading] = React.useState(true)
 
+
     React.useEffect(() => {
         setTimeout(() => {
-            check().then((data) => {
+            check().then(data => {
                 user.setUser(data)
                 user.setIsAuth(true)
-            }).catch((error) => {
-                    console.log('Error while checking authentication:', error)
-                }).finally(() => setLoading(false))
+            }).finally(() => setLoading(false))
         }, 1000)
-
     }, [user])
 
     if (loading) {
