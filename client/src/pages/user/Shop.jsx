@@ -9,6 +9,8 @@ import WirelessList from "../../components/devices/sorting/WirelessList";
 import DeviceList from "../../components/devices/device/DeviceList";
 import {getCartId} from "../../http/cartAPI";
 import DeviceCount from "../../components/devices/device/DeviceCount";
+import RatingList from "../../components/devices/sorting/RatingList";
+import PriceList from "../../components/devices/sorting/PriceList";
 
 const Shop = observer(() => {
     const {device, user, cart} = React.useContext(Context)
@@ -28,11 +30,12 @@ const Shop = observer(() => {
             1,
             null,
             null,
-            null).then(data => {
-            device.setDevice(data.rows);
-            device.setTotalCount(data.count);
+            null).then((data) => {
+            device.setDevice(data.devices.rows);
+            device.setMinPrice(data.minPrice)
+            device.setMaxPrice(data.maxPrice)
+            device.setTotalCount(data.devices.count);
         });
-        console.log(device.selectedTypes)
     }, [device, device.selectedTypes])
 
     React.useEffect(() => {
@@ -52,12 +55,12 @@ const Shop = observer(() => {
             device.selectedWireless?.id,
             3,
             device.page,
-            null,
-            null,
-            null
+            device.minPrice,
+            device.maxPrice,
+            device.selectedRating?.value
         ).then((data) => {
-            device.setDevice(data.rows);
-            device.setTotalCount(data.count);
+            device.setDevice(data.devices.rows);
+            device.setTotalCount(data.devices.count);
         })
     }, [
         device,
@@ -68,8 +71,8 @@ const Shop = observer(() => {
         device.selectedMaterials,
         device.selectedWireless,
         device.selectedRating,
-        device.selectedMinPrice,
-        device.selectedMaxPrice
+        device.maxPrice,
+        device.minPrice
     ])
 
     return (
@@ -89,7 +92,12 @@ const Shop = observer(() => {
                         Очистить фильтры
                     </button>
                 </div>
+                {device.minPrice && device.maxPrice && (
+                    <PriceList minPrice={device.minPrice}
+                               maxPrice={device.maxPrice}/>
+                )}
                 <BrandList/>
+                <RatingList/>
                 <ColorList/>
                 <MaterialList/>
                 <WirelessList/>
@@ -99,7 +107,7 @@ const Shop = observer(() => {
                     <DeviceList/>
                 </div>
                 <div className="shop__right--bottom">
-                    <DeviceCount />
+                    <DeviceCount/>
                 </div>
             </div>
         </div>

@@ -1,0 +1,8 @@
+<svg id="icon-recycle-bin" viewBox="0 0 24 24" width="30px" height="30px">
+    <path id="FillDelete" fill="gray" d="M15 5V3H9v2H3v2h2v14h14V7h2V5h-6zm2 14H7V7h10v12z">
+
+    </path>
+    <path id="FillDelete1" fill="gray" d="M11 9H9v8h2V9zM15 9h-2v8h2V9z">
+
+    </path>
+</svg>

@@ -1,6 +1,10 @@
 @import "../../styles/mixin/mini";
 
 .auth {
+  background-color: var(--white);
+  width: max-content;
+  height: max-content;
+
   &-container {
     position: absolute;
     width: 100vw;
@@ -11,9 +15,6 @@
     background-color: rgb(249, 249, 251);
     @include flex-all-center;
   }
-  background-color: var(--white);
-  width: max-content;
-  height: max-content;
 
   &-logo {
     @include flex-all-center;

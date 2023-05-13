@@ -1,5 +1,5 @@
 import React from 'react';
-import {getOneBrand} from "../../../http/deviceApi";
+import {getOneBrand, putMark} from "../../../http/deviceApi";
 import {useNavigate} from "react-router-dom";
 import {CURRENT_DEVICE_ROUTE} from "../../../utils/consts";
 
@@ -10,7 +10,7 @@ import {Context} from "../../../index";
 import Swal from "sweetalert2";
 
 const DeviceItem = ({device, deviceBrand}) => {
-    const {cart} = React.useContext(Context)
+    const {cart, user} = React.useContext(Context)
     const history = useNavigate()
     const [brandName, setBrandName] = React.useState('')
     React.useEffect(() => {
@@ -19,6 +19,11 @@ const DeviceItem = ({device, deviceBrand}) => {
         })
     }, [deviceBrand])
 
+    React.useEffect(() => {
+        putMark(device.id).then((data) => {
+        })
+    }, [device.id])
+
     return (
         <div className="device"
              onClick={() => history(`${CURRENT_DEVICE_ROUTE}/${device.id}`)}>
@@ -26,7 +31,7 @@ const DeviceItem = ({device, deviceBrand}) => {
                 {
                     device.images.map((image, index) => (
                         <img src={`${process.env.REACT_APP_API_PATH}${image.imagePath}`}
-                             alt={`Device Image ${index + 1}`}
+                             alt={`Device images ${index + 1}`}
                              aria-label={`Device Image ${index + 1}`}
                              key={index}/>
                     ))
@@ -47,19 +52,35 @@ const DeviceItem = ({device, deviceBrand}) => {
                 <div className="device__buying--price">
                     от {device.devicePrice} ₽
                 </div>
-                <button className="btn-reset device__buying--btn"
-                        onClick={(event) => {
-                            createCartItem(cart.cartId,device.id).then((data) => {
-                                return Swal.fire({
-                                    icon: 'success',
-                                    title: 'Ваушки!',
-                                    text: data.message
-                                })
-                            })
+                {
+                    user.user.id ?
+                        <button className="device__buying--btn btn-reset"
+                                onClick={(event) => {
+                            createCartItem(cart.cartId, device.id)
+                                .then((data) => {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Ваушки!',
+                                        text: data.message,
+                                    });
+                                });
+                            event.stopPropagation();
+                        }}>
+                            <Cart />
+                        </button>
+                        :
+                        <button className="device__buying--btn btn-reset"
+                                onClick={(event) => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Внимание!',
+                                text: 'Товары могут приобретать только авторизированные пользователи!',
+                            });
                             event.stopPropagation()
                         }}>
-                    <Cart />
-                </button>
+                            <Cart />
+                        </button>
+                }
             </div>
         </div>
     );

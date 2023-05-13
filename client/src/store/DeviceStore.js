@@ -12,7 +12,28 @@ export default class DeviceStore {
         this._colors = []
         this._materials = []
         this._wireless = []
-        this._rating = null
+        this._rating = [
+            {
+                id: 1,
+                value: 1
+            },
+            {
+                id: 2,
+                value: 2
+            },
+            {
+                id: 3,
+                value: 3
+            },
+            {
+                id: 4,
+                value: 4
+            },
+            {
+                id: 5,
+                value: 5
+            }
+        ]
         this._minPrice = null
         this._maxPrice = null
         this._devices = []
@@ -22,9 +43,7 @@ export default class DeviceStore {
         this._selectedColors = {}
         this._selectedMaterials = {}
         this._selectedWireless = {}
-        this._selectedRating = null
-        this._selectedMinPrice = null
-        this._selectedMaxPrice = null
+        this._selectedRating = {}
 
         this._page = 1
         this._totalCount = 0
@@ -58,6 +77,7 @@ export default class DeviceStore {
     }
 
     setMinPrice(minPrice) {
+        console.log('minPrice ', minPrice)
         this._minPrice = minPrice
     }
 
@@ -105,16 +125,6 @@ export default class DeviceStore {
     setSelectedRating(rating) {
         this.setPage(1)
         this._selectedRating = rating
-    }
-
-    setSelectedMinPrice(minPrice) {
-        this.setPage(1)
-        this._selectedMinPrice = minPrice
-    }
-
-    setSelectedMaxPrice(maxPrice) {
-        this.setPage(1)
-        this._selectedMaxPrice = maxPrice
     }
 
     get type() {
@@ -187,13 +197,5 @@ export default class DeviceStore {
 
     get selectedRating() {
         return this._selectedRating
-    }
-
-    get selectedMinPrice() {
-        return this._selectedMinPrice
-    }
-
-    get selectedMaxPrice() {
-        return this._selectedMaxPrice
     }
 }

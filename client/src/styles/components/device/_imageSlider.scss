@@ -1,7 +1,24 @@
 @import '../../mixin/mini';
 
-.main-image {
-  @include flex;
-  justify-content: flex-start;
-  flex-flow: row nowrap;
+.image-list {
+  @include flex-all-center;
+  flex-flow: column nowrap;
+
+  &--main {
+    @include flex-all-center;
+  }
+
+  &--main img {
+    height: 250px;
+  }
+
+  &--secondary {
+    @include flex-all-center;
+  }
+
+  &--secondary img {
+    height: 50px;
+    margin: 5px;
+    cursor: pointer;
+  }
 }

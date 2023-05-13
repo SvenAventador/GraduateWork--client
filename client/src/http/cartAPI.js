@@ -51,7 +51,7 @@ export const removeCartItem = async (cartId, deviceId) => {
  */
 export const removeAllItems = async (cartId) => {
     try {
-        const {data} = await $authHost.delete('/api/cart/' + cartId)
+        await $authHost.delete('/api/cart/' + cartId)
     } catch (e) {
         return e.response.message
     }

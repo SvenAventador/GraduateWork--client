@@ -9,7 +9,9 @@ const DeviceList = observer(() => {
         <div className="device__list">
             {device.totalCount > 0 ? (
                 device.devices.map((device) => (
-                    <DeviceItem key={device.id} device={device} deviceBrand={device.brandId} />
+                    <DeviceItem key={device.id}
+                                device={device}
+                                deviceBrand={device.brandId} />
                 ))
             ) : (
                 <p className="device__list--not-found">

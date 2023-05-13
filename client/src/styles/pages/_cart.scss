@@ -1,0 +1,217 @@
+@import "../mixin/mini";
+
+.cart-container {
+  width: 100%;
+  background-color: #f9f9fb;
+}
+
+.cart {
+
+  &__title {
+    font-size: 45px;
+    padding-top: 1rem;
+    padding-bottom: .7rem;
+  }
+
+  &-good {
+    @include flex;
+    flex-flow: row nowrap;
+  }
+
+  &-form {
+    @include flex;
+    width: 100%;
+    flex-flow: column wrap;
+    margin-right: 2rem;
+  }
+
+  &-device {
+    width: 100%;
+    background-color: var(--white);
+    @include flex-all-sb;
+    flex-flow: row nowrap;
+    margin-bottom: 1rem;
+
+    &__left {
+      @include flex-v-center;
+      flex-flow: row nowrap;
+      cursor: pointer;
+
+      &--description {
+
+        &-name {
+          font-size: 25px;
+          margin-bottom: 1rem;
+          word-break: break-all;
+        }
+
+        &-price {
+          @include flex-v-center;
+
+          & span:first-child {
+            margin-right: .5rem;
+            font-size: 18px;
+          }
+
+          & span:last-child {
+            font-size: 16px;
+            color: lightgray;
+          }
+        }
+      }
+    }
+    &__right {
+      @include flex-v-center;
+      flex-flow: row nowrap;
+    }
+
+    &__amount {
+      @include flex-v-center;
+      width: max-content;
+      height: max-content;
+      background-color: #f1f1f6;
+    }
+
+    &__delete #FillDelete #FillDelete1 {
+      fill: gray;
+      transition: .5s ease-in-out;
+    }
+
+    &__delete:hover #FillDelete #FillDelete1 {
+      fill: var(--hoverColor);
+      transition: .5s ease-in-out;
+    }
+  }
+
+  &-description {
+    background-color: var(--white);
+    padding: 40px 40px 56px;
+    width: max-content;
+    height: max-content;
+
+    &__title p:first-child {
+      font-size: 30px;
+      white-space: nowrap;
+    }
+
+    &__title p:last-child {
+      margin: 0 0 40px;
+      color: #777780;
+      font-size: 16px;
+      line-height: 1.25;
+      white-space: nowrap;
+    }
+
+    &__total {
+      font-size: 30px;
+      word-break: break-word;
+      margin-bottom: 1rem;
+    }
+
+    &__btn {
+      width: 100%;
+      padding: 15px 30px;
+      margin-bottom: .8rem;
+      background-color: #56BDC5;
+      color: var(--white);
+      border-radius: 30px;
+      transition: 0.5s ease-in-out;
+
+      &:hover {
+        background-color: #41efff;
+        transition: 0.5s ease-in-out;
+      }
+    }
+
+    &__help {
+      font-size: 15px;
+      font-weight: bold;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    &__socials {
+      @include flex-all-center;
+      margin-top: 1rem;
+
+      & a:first-child {
+        margin-right: 1rem;
+      }
+    }
+
+    &__phone {
+      @include flex-all-center;
+      margin-top: 1rem;
+      white-space: nowrap;
+
+      & a:first-child {
+        margin-right: 1rem;
+        border-right: 1px solid var(--borderColor);
+        padding-right: 1rem;
+      }
+    }
+  }
+
+  &__complete {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr max-content;
+    grid-template-columns: 1fr max-content;
+    align-items: center;
+    grid-column-gap: 20px;
+    padding: 20px 10px 10px;
+    background: #56BDC5;
+    margin-bottom: 40px;
+
+    &-form {
+      display: -ms-grid;
+      display: grid;
+      grid-column: 1/-1;
+      grid-row-gap: 36px;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: start;
+      padding: 30px;
+      align-items: center;
+      background: #fff;
+    }
+  }
+}
+
+.no-devices {
+  font-size: 35px;
+}
+
+.form__list {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 20px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: start;
+}
+
+.btn__payment {
+  width: 100%;
+  padding: 15px 30px;
+  margin-bottom: .8rem;
+  background-color: #56BDC5;
+  color: var(--white);
+  border-radius: 30px;
+  transition: 0.5s ease-in-out;
+
+  &:hover {
+    background-color: #41efff;
+    transition: 0.5s ease-in-out;
+  }
+}
+
+.total__price {
+  font-family: 'Play', sans-serif;
+  font-size: 20px;
+  margin-bottom: 10px;
+}

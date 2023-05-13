@@ -1,93 +1,180 @@
 import React from 'react';
-import {ReactComponent as hurt} from '../../../assets/svg/device/heart.svg'
-import {useParams} from "react-router-dom";
-import {getOneDevice} from "../../../http/deviceApi";
-import {createCartItem} from "../../../http/cartAPI";
-import Swal from "sweetalert2";
-import {Context} from "../../../index";
-import {observer} from "mobx-react-lite";
 import ImageSlider from "./ImageSlider";
+import {Rate} from "antd";
+import {observer} from "mobx-react-lite";
+import {getOneBrand, getOneDevice} from "../../../http/deviceApi";
+import {Context} from "../../../index";
+import {useParams} from "react-router-dom";
+import {StarFilled} from "@ant-design/icons";
+import {ReactComponent as Heart} from "../../../assets/svg/device/heart.svg";
+import {createMark} from "../../../http/ratingApi";
+import Swal from "sweetalert2";
+import {createCartItem, getCartId} from "../../../http/cartAPI";
 
 const Device = observer(() => {
-    const {user} = React.useContext(Context)
+    const {user, cart} = React.useContext(Context)
     const [device, setDevice] = React.useState({info: [], images: []})
+    const [brand, setBrand] = React.useState('')
+    const [value, setValue] = React.useState(null)
+    const [favourite, setFavourite] = React.useState(false)
     const {id} = useParams()
 
     React.useEffect(() => {
-        getOneDevice(id).then((data) => {
-            setDevice(data)
+        if (typeof user.user.id !== 'undefined' && typeof user.user.id === 'number') {
+            getOneDevice(id, user.user.id).then((data) => {
+                setDevice(data);
+                setValue(data.ratings[0].rate || 0);
+            });
+        } else if (!user.user.id) {
+            getOneDevice(id, user.user.id).then((data) => {
+                setDevice(data);
+                setValue(0);
+            });
+        }
+
+        getOneBrand(device.brandId).then((data) => {
+            setBrand(data.brandName)
         })
-    }, [id])
+    }, [device.brandId, device.id, id, user.user.id]);
+
+    React.useEffect(() => {
+        if (user.isAuth) {
+            getCartId(user.user.id).then(cartId => {
+                cart.setCartId(cartId)
+            })
+        }
+    }, [user.isAuth, user.user.id, cart])
+    console.log(cart.cartId)
+
+    const createNewMark = (mark) => {
+        createMark(user.user.id, id, mark).then((data) => {
+            return Swal.fire({
+                icon: 'success',
+                title: 'Ваушки!',
+                text: data.message
+            })
+        })
+    }
+
+    React.useEffect(() => {
+        setFavourite(false)
+        let devices = JSON.parse(localStorage.getItem(`favouriteDevices_${user.user.id}`)) || [];
+        const index = devices.findIndex(d => d.id === device.id);
+        if (index >= 0) {
+            setFavourite(true)
+        }
+    }, [device.id, user.user.id])
+
+    function toggleFavourite() {
+        let devices = JSON.parse(localStorage.getItem(`favouriteDevices_${user.user.id}`)) || [];
+        const index = devices.findIndex(d => d.id === device.id);
+
+        if (index >= 0) {
+            devices.splice(index, 1);
+            setFavourite(false)
+        } else {
+            devices.push(device);
+            setFavourite(true)
+        }
+
+        localStorage.setItem(`favouriteDevices_${user.user.id}`, JSON.stringify(devices));
+    }
 
     return (
-        <div className="device-info">
+        <div className="device-info site-container">
             <div className="device-info__top">
                 <div className="device-info__left">
-                    <ImageSlider images={device.images} />
+                    <ImageSlider images={device.images}/>
                 </div>
                 <div className="device-info__right">
+                    <div className="device-info__right--name">
+                        {brand + " " + device.deviceName}
+                    </div>
 
+                    <div className="device-info__right--action">
+                        <Rate value={value}
+                              disabled={!user.user.id}
+                              onChange={(newValue) => {
+                                  setValue((prevValue) => (prevValue === newValue ? null : newValue));
+                                  createNewMark(newValue);
+                              }}
+                              character={<StarFilled style={{fontSize: '40px'}}/>}/>
+                        {
+                            user.user.id ?
+                                <div
+                                    className={favourite ? "device-info__right--action-favourite--active" : "device-info__right--action-favourite"}
+                                    onClick={() => toggleFavourite()}>
+                                    <Heart/>
+                                </div>
+                                :
+                                <div
+                                    className={favourite ? "device-info__right--action-favourite--active" : "device-info__right--action-favourite"}
+                                    onClick={() => {
+                                        return Swal.fire({
+                                            icon: 'error',
+                                            title: 'Внимание!',
+                                            text: 'Добавлять в избранное может только авторизированный пользователь!'
+                                        })
+                                    }}>
+                                    <Heart/>
+                                </div>
+                        }
+                    </div>
+
+                    <div className="device-info__right--description">
+                        {device.deviceDescription}
+                    </div>
+
+                    <div className="device-info__right--buy">
+                        <div className="device-info__right--buy-price">
+                            {device.devicePrice} ₽
+                        </div>
+                        <div className="device-info__right--separator"></div>
+                        {
+                            user.user.id ?
+                                <button className="device-info__right--buy-btn btn-reset"
+                                        onClick={(event) => {
+                                            createCartItem(cart.cartId, +id)
+                                                .then((data) => {
+                                                    Swal.fire({
+                                                        icon: 'success',
+                                                        title: 'Ваушки!',
+                                                        text: data.message,
+                                                    });
+                                                });
+                                        }}>
+                                    Добавить в корзину
+                                </button>
+                                :
+                                <button className="device-info__right--buy-btn btn-reset"
+                                        onClick={() => {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Внимание!',
+                                                text: 'Товары могут приобретать только авторизированные пользователи!',
+                                            });
+                                        }}>
+                                    Добавить в корзину
+                                </button>
+                        }
+                    </div>
                 </div>
             </div>
             <div className="device-info__bottom">
-
+                <p className="device-info__bottom--title">Характеристики</p>
+                {device.info.map((info) =>
+                    <div className="device-info__characteristics" key={info.id}>
+                        <div className="device-info__characteristics--name">
+                            {info.infoTitle}
+                        </div>
+                        <div className="device-info__characteristics--description">
+                            {info.infoDescription}
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
-    //     /*<div className={"phone-info"}>
-    //         <div className="phone-info__top flex">
-    //             <div className="phone-info__top--image">
-    //                 <img src={process.env.REACT_APP_API_URL + devices.img}
-    //                      alt="device_img"
-    //                      aria-label={"devices image"}/>
-    //             </div>
-    //             <div className="phone-info__about">
-    //                 <h3 className={"phone-info__about--name"}>{devices.deviceName}</h3>
-    //                 <div className="phone-info__about--star">
-    //
-    //                     {/*TODO*/}
-    //
-    //                     <div className="phone-info__additionally">
-    //                         <div className="phone-info__additionally--list flex">
-    //                             <h3 className="phone-info__additionally--price">
-    //                                 {devices.devicePrice + " руб"}
-    //                             </h3>
-    //                             <img src={hurt}
-    //                                  alt="Favourite"
-    //                                  aria-label={"Favourite button"}
-    //                                  className={'phone-info__additionally--favourite'}/>
-    //                             <button className="phone-info__additionally--buy btn-reset"
-    //                                     onClick={() => {
-    //                                         createCartItem(user.user.id, parseInt(id)).then(data => {
-    //                                             return Swal.fire({
-    //                                                 icon: 'success',
-    //                                                 title: 'Ваушки!',
-    //                                                 text: data.message
-    //                                             })
-    //                                         })
-    //                                     }}>
-    //                                 Добавить в корзину
-    //                             </button>
-    //                         </div>
-    //                         <div className="phone-info__additionally--descr">
-    //                             {devices.descriptionDevice}
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //         <div className="phone-info__bottom">
-    //             <h2 className="phone-info__bottom--title">Общие хакартеристики</h2>
-    //             {
-    //                 devices.info.map(info =>
-    //                     <div className={"phone-info__bottom--data flex"} key={info.id}>
-    //                         <div className={"phone-info__bottom--data-title"}>{info.titleInfo}</div>
-    //                         <div className={"phone-info__bottom--data-descr"}>{info.descriptionInfo}</div>
-    //                     </div>
-    //                 )
-    //             }
-    //         </div>
-    //     </div>*/
-    // );/*
-    )});
+    );
+});
 
 export default Device;

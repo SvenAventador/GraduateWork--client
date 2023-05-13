@@ -4,7 +4,6 @@ import {
     CURRENT_DEVICE_ROUTE, DEVICES_ROUTE,
     LOGIN_ROUTE,
     MAIN_ROUTE,
-    ORDER_MENU_ROUTE,
     PERSONAL_AREA_ROUTE,
     REGISTRATION_ROUTE,
     ABOUT_ROUTE,
@@ -18,7 +17,6 @@ import {
 } from "./utils/consts";
 
 import PersonalArea from "./pages/user/PersonalArea";
-import OrderMenu from "./pages/user/OrderMenu";
 import Cart from "./pages/user/Cart";
 import AdminPanel from "./pages/admin/AdminPanel";
 import Auth from "./pages/Auth";
@@ -44,10 +42,6 @@ export const authRoutes = [
     {
         path: PERSONAL_AREA_ROUTE,
         Component: PersonalArea
-    },
-    {
-        path: ORDER_MENU_ROUTE,
-        Component: OrderMenu
     },
     {
         path: CART_ROUTE + '/:id',

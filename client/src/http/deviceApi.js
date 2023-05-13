@@ -1,4 +1,4 @@
-import {$host} from "./index";
+import {$authHost, $host} from "./index";
 
 //region Типы товаров
 /**
@@ -50,6 +50,7 @@ export const getAllWireless = async () => {
 //endregion
 
 //region Получение товара(-ов)
+
 /**
  * Получение одного бренда.
  * @param id - Идентификатор бренда.
@@ -57,6 +58,16 @@ export const getAllWireless = async () => {
  */
 export const getOneBrand = async (id) => {
     const {data} = await $host.get('api/brand/' + id)
+    return data
+}
+
+/**
+ * Получение одного цвета.
+ * @param id - Идентификатор бренда.
+ * @returns {Promise<any>}
+ */
+export const getOneColor = async (id) => {
+    const {data} = await $host.get('api/color/' + id)
     return data
 }
 
@@ -104,12 +115,18 @@ export const getAllDevices = async (typeId,
 /**
  * Получение одного устройства.
  * @param id - Идентификатор устройства.
+ * @param userId - Идентификатор пользователя.
  * @returns {Promise<void>}
  */
-export const getOneDevice = async (id) => {
-    const {data} = await $host.get('api/device/' + id)
-    return data
-}
+export const getOneDevice = async (id, userId = undefined) => {
+    let url = `api/device/${id}`;
+    if (userId && typeof userId === 'number') {
+        url += `?userId=${userId}`;
+    }
+    const { data } = await $host.get(url);
+    return data;
+};
+
 //endregion
 
 //region Оценка товара
@@ -119,7 +136,7 @@ export const getOneDevice = async (id) => {
  * @returns {Promise<void>}
  */
 export const putMark = async (deviceId) => {
-    const {data} = await $host.put('api/device/' + deviceId)
+    const {data} = await $authHost.put('api/device/' + deviceId)
     return data
 }
 //endregion
