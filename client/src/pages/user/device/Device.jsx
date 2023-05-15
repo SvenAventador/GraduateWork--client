@@ -9,7 +9,7 @@ import {StarFilled} from "@ant-design/icons";
 import {ReactComponent as Heart} from "../../../assets/svg/device/heart.svg";
 import {createMark} from "../../../http/ratingApi";
 import Swal from "sweetalert2";
-import {createCartItem, getCartId} from "../../../http/cartAPI";
+import {createCartItem, getCartId} from "../../../http/cartApi";
 
 const Device = observer(() => {
     const {user, cart} = React.useContext(Context)

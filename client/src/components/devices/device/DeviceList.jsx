@@ -7,7 +7,7 @@ const DeviceList = observer(() => {
     const {device} = React.useContext(Context)
     return (
         <div className="device__list">
-            {device.totalCount > 0 ? (
+            {device && device.totalCount > 0 ? (
                 device.devices.map((device) => (
                     <DeviceItem key={device.id}
                                 device={device}
@@ -19,7 +19,6 @@ const DeviceList = observer(() => {
                 </p>
             )}
         </div>
-
     );
 });
 

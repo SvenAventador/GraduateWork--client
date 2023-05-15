@@ -7,7 +7,7 @@ import ColorList from "../../components/devices/sorting/ColorList.jsc";
 import MaterialList from "../../components/devices/sorting/MaterialList";
 import WirelessList from "../../components/devices/sorting/WirelessList";
 import DeviceList from "../../components/devices/device/DeviceList";
-import {getCartId} from "../../http/cartAPI";
+import {getCartId} from "../../http/cartApi";
 import DeviceCount from "../../components/devices/device/DeviceCount";
 import RatingList from "../../components/devices/sorting/RatingList";
 import PriceList from "../../components/devices/sorting/PriceList";
@@ -86,8 +86,6 @@ const Shop = observer(() => {
                                 device.setSelectedMaterials({})
                                 device.setSelectedWireless({})
                                 device.setSelectedRating(null)
-                                device.setSelectedMinPrice(null)
-                                device.setSelectedMaxPrice(null)
                             }, [device])}>
                         Очистить фильтры
                     </button>

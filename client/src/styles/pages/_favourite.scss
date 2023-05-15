@@ -1,0 +1,52 @@
+@import "../mixin/mini";
+
+.favourite-container {
+  width: 100%;
+  background-color: #f9f9fb;
+}
+
+.favourite {
+  padding-bottom: 2rem;
+
+  &__title {
+    font-size: 45px;
+    padding-top: 1rem;
+    padding-bottom: .7rem;
+    margin-right: 2rem;
+  }
+
+  &-device {
+    @include flex-all-sb;
+    width: 100%;
+    background-color: var(--white);
+    margin-bottom: 2rem;
+    padding: 20px;
+
+    &__left {
+      @include flex-v-center;
+      flex-flow: row nowrap;
+
+      &--image {
+        margin-right: 1rem;
+      }
+
+      &--description {
+
+        &-name {
+          font-size: 25px;
+          margin-bottom: 1rem;
+          word-break: break-all;
+        }
+
+        &-price {
+          font-size: 23px;
+          color: lightgray;
+        }
+      }
+    }
+  }
+
+  &__empty {
+    font-size: 35px;
+  }
+}

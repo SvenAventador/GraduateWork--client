@@ -5,7 +5,7 @@ import {CURRENT_DEVICE_ROUTE} from "../../../utils/consts";
 
 import {ReactComponent as Stars} from "../../../assets/svg/device/stars.svg";
 import {ReactComponent as Cart} from "../../../assets/svg/device/cart.svg";
-import {createCartItem} from "../../../http/cartAPI";
+import {createCartItem} from "../../../http/cartApi";
 import {Context} from "../../../index";
 import Swal from "sweetalert2";
 

@@ -50,7 +50,7 @@ const Auth = observer(() => {
             return Swal.fire({
                 icon: "error",
                 title: "Ошибочка",
-                text: JSON.stringify(e.response.data.error)
+                text: e.response.data.message
             })
         }
     }
@@ -76,7 +76,7 @@ const Auth = observer(() => {
             return Swal.fire({
                 icon: "error",
                 title: "Ошибочка",
-                text: e.response.data
+                text: e.response.data.message
             })
         }
     }

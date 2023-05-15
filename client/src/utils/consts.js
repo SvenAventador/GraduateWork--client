@@ -7,6 +7,7 @@ export const ADMIN_ROUTE = '/admin-panel'
 
 /** users routes **/
 export const PERSONAL_AREA_ROUTE = '/personal-route'
+export const ORDER_ROUTE = '/order'
 export const CART_ROUTE = '/cart'
 export const CURRENT_DEVICE_ROUTE = '/devices'
 export const DEVICES_ROUTE = '/devices'

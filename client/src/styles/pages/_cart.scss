@@ -8,9 +8,15 @@
 .cart {
 
   &__title {
-    font-size: 45px;
-    padding-top: 1rem;
-    padding-bottom: .7rem;
+    @include flex-v-center;
+    flex-flow: row nowrap;
+
+    &--name {
+      font-size: 45px;
+      padding-top: 1rem;
+      padding-bottom: .7rem;
+      margin-right: 2rem;
+    }
   }
 
   &-good {
@@ -124,6 +130,7 @@
     }
 
     &__help {
+      margin-top: 3rem;
       font-size: 15px;
       font-weight: bold;
       white-space: nowrap;

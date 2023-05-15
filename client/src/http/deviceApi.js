@@ -123,9 +123,20 @@ export const getOneDevice = async (id, userId = undefined) => {
     if (userId && typeof userId === 'number') {
         url += `?userId=${userId}`;
     }
-    const { data } = await $host.get(url);
+    const {data} = await $host.get(url);
     return data;
 };
+
+/**
+ * Поиск товара по названию.
+ * @param deviceName - Название устройства.
+ * @returns {Promise<void>}
+ */
+export const searchDevices = async (deviceName = undefined) => {
+    let url = deviceName ? `api/device/search?deviceName=${deviceName}` : 'api/device'
+    const {data} = await $host.get(url)
+    return data;
+}
 
 //endregion
 

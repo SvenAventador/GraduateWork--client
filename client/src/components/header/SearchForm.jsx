@@ -2,24 +2,29 @@ import React from 'react';
 
 import {ReactComponent as Search} from "../../assets/svg/header/search.svg";
 import {ReactComponent as ClearForm} from "../../assets/svg/header/clear.svg";
+import {searchDevices} from "../../http/deviceApi";
+import {Context} from "../../index";
+import {useNavigate} from "react-router-dom";
+import {DEVICES_ROUTE} from "../../utils/consts";
 
 const SearchForm = () => {
+    const {device} = React.useContext(Context)
     const [inputValue, setInputValue] = React.useState('')
-
     const [isActive, setIsActive] = React.useState(false)
     const inputRef = React.useRef(null)
+    const history = useNavigate()
 
     React.useEffect(() => {
 
         const clickOutside = (event) => {
             if (inputRef.current && !inputRef.current.contains(event.target))
                 setIsActive(false)
-            }
+        }
 
-            document.addEventListener('mousedown', clickOutside)
+        document.addEventListener('mousedown', clickOutside)
 
-            return () => {
-                document.removeEventListener('mousedown', clickOutside)
+        return () => {
+            document.removeEventListener('mousedown', clickOutside)
         }
     }, [inputRef])
 
@@ -30,6 +35,14 @@ const SearchForm = () => {
     const setEmptyValue = () => {
         if (inputValue.trim() !== '')
             setInputValue('')
+    }
+
+    const searchDevice = async (deviceName) => {
+        searchDevices(deviceName).then((data) => {
+            console.log(data)
+            device.setDevice(data)
+        })
+        history(DEVICES_ROUTE)
     }
 
     return (
@@ -55,9 +68,10 @@ const SearchForm = () => {
             </button>
 
             <button className={"header-bottom__search--btn btn-reset"}
-                    aria-label={"Кнопка поиска"}>
+                    aria-label={"Кнопка поиска"}
+                    onClick={() => searchDevice(inputValue)}>
                 <Search className={"header-bottom__search--btn-search"}
-                        aria-label={"Кнопка поиска товаров"} />
+                        aria-label={"Кнопка поиска товаров"}/>
             </button>
         </div>
 

@@ -2,9 +2,10 @@ import React from 'react';
 import {observer} from "mobx-react-lite";
 import {Context} from "../../index";
 import {NavLink, useNavigate} from "react-router-dom";
-import {getAllCartItem, getCartId, removeAllItems, removeCartItem} from "../../http/cartAPI";
-import {CART_ROUTE, CURRENT_DEVICE_ROUTE, DEVICES_ROUTE} from "../../utils/consts";
+import {getAllCartItem, getCartId, removeAllItems, removeCartItem} from "../../http/cartApi";
+import {CART_ROUTE, CURRENT_DEVICE_ROUTE, ORDER_ROUTE} from "../../utils/consts";
 import Swal from "sweetalert2";
+import queryString from 'query-string';
 
 import {ReactComponent as Minus} from "../../assets/svg/cart/minus.svg";
 import {ReactComponent as Plus} from "../../assets/svg/cart/plus.svg";
@@ -63,10 +64,50 @@ const Cart = observer(() => {
         setDeviceAmount(newDeviceAmount);
     }
 
+    const handleOrderClick = () => {
+        const queryStringParams = queryString.stringify({
+            clientOrder: JSON.stringify(clientOrder),
+            totalCost: totalCost,
+        });
+        history(`${ORDER_ROUTE}?${queryStringParams}`)
+    };
+
+
     return (
         <div className="cart-container">
             <div className="cart site-container">
-                <div className="cart__title">Моя корзина</div>
+                <div className="cart__title">
+                    <div className="cart__title--name">
+                        Моя корзина
+                    </div>
+                    <button className="btn-reset cart__title--name"
+                            onClick={() => {
+                                return Swal.fire({
+                                    icon: 'question',
+                                    title: 'Маленькое уточнение!',
+                                    text: 'Вы точно хотите удалить товар?',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    cancelButtonText: 'Нет, не хочу!',
+                                    confirmButtonText: 'Да, хочу!'
+                                }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            setClientOrder([])
+                                            removeAllItems(cart.cartId).then(() => {
+                                                return Swal.fire({
+                                                    icon: 'success',
+                                                    title: 'Ваушки!',
+                                                    text: 'Корзина успешно очищена!'
+                                                })
+                                            })
+                                        }
+                                    }
+                                )
+                            }}>
+                        <Delete/>
+                    </button>
+                </div>
                 {
                     clientOrder.length !== 0 ? (
                             <>
@@ -153,7 +194,8 @@ const Cart = observer(() => {
                                             <p>Без учета стоимости доставки</p>
                                         </div>
                                         <div className="cart-description__total">{totalCost} ₽</div>
-                                        <button className="btn-reset cart-description__btn">
+                                        <button onClick={handleOrderClick}
+                                                className="btn-reset cart-description__btn">
                                             Оформить заказ
                                         </button>
                                         <p className="cart-description__help">
@@ -181,20 +223,9 @@ const Cart = observer(() => {
                                     <div className="cart__complete-form form">
                                         <div className="form__list">
                                             <div className="form__list--item">
-                                                <button className="btn__payment btn-reset"
-                                                        onClick={() => {
-                                                            removeAllItems(cart.cartId).then(() => {
-                                                                Swal.fire({
-                                                                    icon: 'success',
-                                                                    title: 'Спасибочки ^_^',
-                                                                    text: 'Спасибо что Вы выбрали именно наш магазин, ждем Вас еще :) \n' +
-                                                                        'С любовью, администрация TechnoWorld.'
-                                                                }).then(() => {
-                                                                    history(DEVICES_ROUTE)
-                                                                })
-                                                            })
-                                                        }
-                                                        }>Оформить покупку
+                                                <button onClick={handleOrderClick}
+                                                        className="btn__payment btn-reset">
+                                                    Оформить заказ
                                                 </button>
                                             </div>
                                             <div className="form__list--item">

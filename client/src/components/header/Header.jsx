@@ -11,7 +11,7 @@ import {
     TRADE_IN_ROUTE,
     LOGIN_ROUTE,
     CART_ROUTE,
-    FAVOURITE_ROUTE
+    FAVOURITE_ROUTE, PERSONAL_AREA_ROUTE
 } from "../../utils/consts";
 
 import {ReactComponent as WhatsApp} from '../../assets/svg/header/wa.svg'
@@ -29,14 +29,23 @@ import {getAllTypes} from "../../http/deviceApi";
 
 const Header = observer(() => {
     const {user, device} = React.useContext(Context)
+    const [userName, setUserName] = React.useState('')
+    const [userId, setUserId] = React.useState(null)
 
     React.useEffect(() => {
         getAllTypes().then(data => device.setType(data))
-    }, [])
+    }, [device])
 
+    React.useEffect(() => {
+        setUserName(user.user.userName)
+    }, [user.user.userName])
+
+    React.useEffect(() => {
+        setUserId(user.user.id)
+        console.log(userId)
+    }, [user.user.id, userId])
 
     return (
-
         <header className="header">
             <div className="header-top">
                 <div className="header-container">
@@ -132,7 +141,7 @@ const Header = observer(() => {
                 <SearchForm />
 
                 <div className="header-bottom__favourite">
-                    <NavLink to={`${FAVOURITE_ROUTE}/${user.user.id}`}
+                    <NavLink to={`${FAVOURITE_ROUTE}/${userId}`}
                              className="header-bottom__favourite-link">
                         <div className="header-bottom__favourite-button--img">
                             <FavouriteDevice />
@@ -156,7 +165,7 @@ const Header = observer(() => {
                 </div>
 
                 <div className="header-bottom__auth">
-                    <NavLink to={LOGIN_ROUTE}
+                    <NavLink to={user.isAuth ? `${PERSONAL_AREA_ROUTE}/${user.user.id}` : LOGIN_ROUTE}
                              className="header-bottom__auth-link">
                         <div className="header-bottom__auth-button--img">
                             <Auth />
@@ -165,7 +174,7 @@ const Header = observer(() => {
                             <p>
                                 {
                                     user.isAuth ?
-                                        user.user.userName
+                                        userName
                                         :
                                         "Войти"
                                 }
