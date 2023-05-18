@@ -2,7 +2,7 @@ import React from 'react';
 
 import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import Swal from 'sweetalert2'
-import {LOGIN_ROUTE, REGISTRATION_ROUTE, DEVICES_ROUTE} from "../utils/consts";
+import {LOGIN_ROUTE, REGISTRATION_ROUTE, DEVICES_ROUTE, ADMIN_ROUTE} from "../utils/consts";
 
 import logo from '../assets/images/auth/logo.png'
 import close from '../assets/images/auth/btn_close.png'
@@ -37,7 +37,7 @@ const Auth = observer(() => {
                     title: "Успешно",
                     text: "Поздравляем с успешной регистрацией!"
                 }).then(() => {
-                    history(DEVICES_ROUTE, {replace: true})
+                    history(DEVICES_ROUTE)
                 })
             } else {
                 return Swal.fire({
@@ -65,12 +65,11 @@ const Auth = observer(() => {
             data = await login(email, password)
             user.setUser(data)
             user.setIsAuth(true)
+            history(user.user.userRole ? ADMIN_ROUTE : DEVICES_ROUTE)
             return Swal.fire({
                 icon: "success",
                 title: "Успешно",
                 text: "Добро пожаловать!"
-            }).then(() => {
-                history(DEVICES_ROUTE, {replace: true})
             })
         } catch (e) {
             return Swal.fire({

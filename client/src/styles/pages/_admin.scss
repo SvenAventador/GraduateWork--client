@@ -1,0 +1,10 @@
+.menu-header-collapsed {
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+
+.menu-footer {
+  position: absolute;
+  bottom: 50px;
+}

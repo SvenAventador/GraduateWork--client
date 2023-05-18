@@ -9,12 +9,25 @@
 @import "mixin/font-face";
 
 /*pages*/
-@import "pages/auth";
-@import "pages/shop";
-@import "pages/device";
-@import "pages/cart";
-@import "pages/order";
-@import "pages/favourite";
+
+  /** basic page **/
+  @import "pages/auth";
+  @import "pages/shop";
+  @import "pages/device";
+  @import "pages/cart";
+  @import "pages/order";
+  @import "pages/favourite";
+  @import "pages/personal";
+  @import "pages/admin";
+
+  /** info page **/
+  @import "pages/info/about";
+  @import "pages/info/contacts";
+  @import "pages/info/delivery";
+  @import "pages/info/findUs";
+  @import "pages/info/guarantee";
+  @import "pages/info/loyal";
+  @import "pages/info/tradeIn";
 
 /*components*/
 
@@ -38,6 +51,10 @@
 
   /** device page **/
   @import "components/device/imageSlider";
+
+  /** personal area **/
+  @import "components/personal/orderTable";
+  @import "components/personal/userData";
 
   /** footer **/
   @import "components/footer/footer";

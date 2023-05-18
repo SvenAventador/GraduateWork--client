@@ -39,11 +39,19 @@ const App = observer(() => {
 
     return (
         <BrowserRouter>
-            <Header/>
-            <main className="main">
-                <AppRoute/>
-            </main>
-            <Footer/>
+            {user.user.userRole === 'ADMIN' ? (
+                <main className="main">
+                    <AppRoute />
+                </main>
+            ) : (
+                <>
+                    <Header />
+                    <main className="main">
+                        <AppRoute />
+                    </main>
+                    <Footer />
+                </>
+            )}
         </BrowserRouter>
     );
 });

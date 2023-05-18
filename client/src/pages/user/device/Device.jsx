@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ImageSlider from "./ImageSlider";
 import {Rate} from "antd";
 import {observer} from "mobx-react-lite";

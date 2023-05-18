@@ -1,0 +1,28 @@
+@import "../../mixin/mini";
+
+.order__purchase {
+  @include flex-v-center;
+  flex-flow: row nowrap;
+  margin-bottom: 1rem;
+  width: 100%;
+  background-color: var(--white);
+
+  &--img {
+    margin-right: 2rem;
+  }
+
+  &--info {
+    @include flex;
+    flex-flow: column nowrap;
+
+    & p:first-child {
+      font-size: 30px;
+      margin-bottom: .1rem;
+    }
+
+    & p:last-child {
+      font-size: 25px;
+      color: var(--secondaryColor);
+    }
+  }
+}

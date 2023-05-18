@@ -8,7 +8,6 @@ const AppRoute = () => {
     const {user} = React.useContext(Context)
     return (
         <Routes>
-
             {
                 user.isAuth &&
                 authRoutes.map( ({path, Component}) =>
@@ -19,8 +18,7 @@ const AppRoute = () => {
             }
 
             {
-                user.isAuth &&
-                user.user.role === 'ADMIN' &&
+                user.isAuth && user.user.userRole === 'ADMIN' &&
                     <Route key={adminRoute.path}
                            path={adminRoute.path}
                            element={<adminRoute.Component />} />

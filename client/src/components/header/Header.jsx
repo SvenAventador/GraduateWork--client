@@ -42,7 +42,6 @@ const Header = observer(() => {
 
     React.useEffect(() => {
         setUserId(user.user.id)
-        console.log(userId)
     }, [user.user.id, userId])
 
     return (

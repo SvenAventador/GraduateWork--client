@@ -65,6 +65,19 @@ input[type="search"]::-webkit-search-results-decoration {
   height: 40px !important;
 }
 
+.info-container {
+  width: 100%;
+  background-color: #f9f9fb;
+}
+
 .is-hidden {
   display: none;
+}
+
+.ant-layout-sider-trigger {
+  display: none;
+}
+
+.ant-layout {
+  height: 100vh !important;
 }

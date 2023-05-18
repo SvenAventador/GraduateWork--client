@@ -77,7 +77,6 @@ export default class DeviceStore {
     }
 
     setMinPrice(minPrice) {
-        console.log('minPrice ', minPrice)
         this._minPrice = minPrice
     }
 

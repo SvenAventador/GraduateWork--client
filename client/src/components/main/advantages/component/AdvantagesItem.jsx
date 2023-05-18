@@ -6,13 +6,13 @@ const AdvantagesItem = ({item, isActive, onFocus}) => {
 
     React.useEffect(() => {
         isActive ? descriptionBlock.current.style.display = 'block'
-                 : descriptionBlock.current.style.display = 'none'
+            : descriptionBlock.current.style.display = 'none'
     }, [isActive])
 
     return (
         <li className={`advantages__item ${isActive ? "advantages__item--active" : ''}`}
-        onMouseEnter={() => onFocus()}
-        onMouseLeave={() => onFocus()}>
+            onMouseEnter={() => onFocus()}
+            onMouseLeave={() => onFocus()}>
             <div className="advantages__item-top">
                 {item.image}
                 <p className="advantages__item-top--title">
@@ -21,7 +21,7 @@ const AdvantagesItem = ({item, isActive, onFocus}) => {
             </div>
             <div className="advantages__item-bottom">
                 <p className="advantages__item-bottom-description"
-                    ref={descriptionBlock}>
+                   ref={descriptionBlock}>
                     {item.description}
                 </p>
             </div>
