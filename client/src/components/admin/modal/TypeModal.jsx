@@ -27,6 +27,8 @@ const TypeModal = (props) => {
                     icon: 'success',
                     title: 'Ваушки!',
                     text: 'Тип успешно создан!'
+                }).then(() => {
+                    onOk()
                 });
             })
             .catch((e) => {
@@ -53,6 +55,8 @@ const TypeModal = (props) => {
                     icon: 'success',
                     title: 'Ваушки!',
                     text: 'Тип успешно обновлен!'
+                }).then(() => {
+                    onOk()
                 });
             })
             .catch((e) => {
@@ -70,6 +74,7 @@ const TypeModal = (props) => {
                 title={typeId !== null ? 'Изменение типа устройств' : 'Добавление типа устройства'}
                 visible={open}
                 centered
+                maskClosable={false}
                 onOk={onOk}
                 onCancel={onCancel}
                 footer={[

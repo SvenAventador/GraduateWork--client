@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
-import ImageSlider from "./ImageSlider";
+import React from 'react';
+import ImageSlider from "../../components/devices/device/ImageSlider";
 import {Rate} from "antd";
 import {observer} from "mobx-react-lite";
-import {getOneBrand, getOneDevice} from "../../../http/deviceApi";
-import {Context} from "../../../index";
+import {getOneBrand, getOneDevice} from "../../http/deviceApi";
+import {Context} from "../../index";
 import {useParams} from "react-router-dom";
 import {StarFilled} from "@ant-design/icons";
-import {ReactComponent as Heart} from "../../../assets/svg/device/heart.svg";
-import {createMark} from "../../../http/ratingApi";
+import {ReactComponent as Heart} from "../../assets/svg/device/heart.svg";
+import {createMark} from "../../http/ratingApi";
 import Swal from "sweetalert2";
-import {createCartItem, getCartId} from "../../../http/cartApi";
+import {createCartItem, getCartId} from "../../http/cartApi";
 
 const Device = observer(() => {
     const {user, cart} = React.useContext(Context)

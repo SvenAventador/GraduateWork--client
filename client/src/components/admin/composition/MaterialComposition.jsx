@@ -11,7 +11,6 @@ const MaterialComposition = ({materials}) => {
     const [isRefresh, setIsRefresh] = React.useState(false)
     const [materialId, setMaterialId] = React.useState(null)
     const [name, setName] = React.useState('')
-
     React.useEffect(() => {
         if (isRefresh) {
             getAllMaterials().then((data) => {
@@ -104,17 +103,18 @@ const MaterialComposition = ({materials}) => {
     return (
         <div>
             <Table bordered
-                   title={() => <Button onClick={() => showUpdateModal(null, null)}>Добавить материал устройства</Button>}
+                   title={() => <Button onClick={() => showUpdateModal(null, null)}>Добавить материал
+                       устройства</Button>}
                    dataSource={materialList.map((material) => ({...material, key: material.id}))}
                    pagination={{
                        defaultPageSize: 6, showSizeChanger: false
                    }}
                    columns={columns}/>
             <MaterialModal open={isOpenModal}
-                        onOk={handleOk}
-                        nameMaterial={name}
-                        materialId={materialId}
-                        onCancel={handleCancel}/>
+                           onOk={handleOk}
+                           nameMaterial={name}
+                           materialId={materialId}
+                           onCancel={handleCancel}/>
         </div>
     );
 };

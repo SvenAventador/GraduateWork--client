@@ -15,22 +15,26 @@ export default class DeviceStore {
         this._rating = [
             {
                 id: 1,
-                value: 1
+                value: 0
             },
             {
                 id: 2,
-                value: 2
+                value: 1
             },
             {
                 id: 3,
-                value: 3
+                value: 2
             },
             {
                 id: 4,
-                value: 4
+                value: 3
             },
             {
                 id: 5,
+                value: 4
+            },
+            {
+                id: 6,
                 value: 5
             }
         ]
@@ -47,7 +51,7 @@ export default class DeviceStore {
 
         this._page = 1
         this._totalCount = 0
-        this._limit = 3
+        this._limit = 9
         makeAutoObservable(this)
 
     }

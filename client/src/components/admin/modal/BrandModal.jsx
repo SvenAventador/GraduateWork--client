@@ -26,10 +26,12 @@ const BrandModal = (props) => {
                     icon: 'success',
                     title: 'Ваушки!',
                     text: 'Бренд успешно создан!'
+                }).then(() => {
+                    onOk()
                 });
             })
             .catch((e) => {
-                Swal.fire({
+                return Swal.fire({
                     icon: 'error',
                     title: 'Внимение!',
                     text: e.response.data.message
@@ -52,10 +54,12 @@ const BrandModal = (props) => {
                     icon: 'success',
                     title: 'Ваушки!',
                     text: 'Бренд успешно обновлен!'
+                }).then(() => {
+                    onOk()
                 });
             })
             .catch((e) => {
-                Swal.fire({
+                return Swal.fire({
                     icon: 'error',
                     title: 'Внимение!',
                     text: e.response.data.message
@@ -69,6 +73,7 @@ const BrandModal = (props) => {
                 title={brandId !== null ? 'Изменение бренда устройств' : 'Добавление бренда устройства'}
                 visible={open}
                 centered
+                maskClosable={false}
                 onOk={onOk}
                 onCancel={onCancel}
                 footer={[

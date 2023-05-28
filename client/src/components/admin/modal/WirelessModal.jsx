@@ -28,6 +28,8 @@ const WirelessModal = (props) => {
                     icon: 'success',
                     title: 'Ваушки!',
                     text: 'Дополнение успешно создано!'
+                }).then(() => {
+                    onOk()
                 });
             })
             .catch((e) => {
@@ -54,6 +56,8 @@ const WirelessModal = (props) => {
                     icon: 'success',
                     title: 'Ваушки!',
                     text: 'Дополенние успешно обновлен!'
+                }).then(() => {
+                    onOk()
                 });
             })
             .catch((e) => {
@@ -71,6 +75,7 @@ const WirelessModal = (props) => {
                 title={wirelessId !== null ? 'Изменение дополнения устройств' : 'Добавление дополнения устройства'}
                 visible={open}
                 centered
+                maskClosable={false}
                 onOk={onOk}
                 onCancel={onCancel}
                 footer={[

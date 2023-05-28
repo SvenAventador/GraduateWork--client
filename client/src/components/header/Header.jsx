@@ -22,7 +22,6 @@ import {ReactComponent as FavouriteDevice} from '../../assets/svg/header/heart.s
 
 import logo from '../../assets/images/logo.png'
 import BurgerMenu from "./BurgerMenu";
-import SearchForm from "./SearchForm";
 import {Context} from "../../index";
 import {observer} from "mobx-react-lite";
 import {getAllTypes} from "../../http/deviceApi";
@@ -100,13 +99,13 @@ const Header = observer(() => {
                         <li className="socials-header-top__item">
                             <NavLink to={process.env.REACT_APP_WA_LINK}
                                      className="socials-header-top__link">
-                                <WhatsApp />
+                                <WhatsApp/>
                             </NavLink>
                         </li>
                         <li className="socials-header-top__item">
                             <NavLink to={process.env.REACT_APP_TG_LINK}
                                      className="socials-header-top__link">
-                                <Telegram />
+                                <Telegram/>
                             </NavLink>
                         </li>
                         <li className="socials-header-top__item">
@@ -127,59 +126,61 @@ const Header = observer(() => {
 
             <div className="header-bottom site-container">
 
-                <NavLink to={MAIN_ROUTE}
-                         className="header-bottom__logo">
-                    <img className="header-bottom__logo-image"
-                         src={logo}
-                         alt="Логотип сайта"
-                         aria-label="Логотип компании TechnoWorld"/>
-                </NavLink>
-
-                <BurgerMenu />
-
-                <SearchForm />
-
-                <div className="header-bottom__favourite">
-                    <NavLink to={`${FAVOURITE_ROUTE}/${userId}`}
-                             className="header-bottom__favourite-link">
-                        <div className="header-bottom__favourite-button--img">
-                            <FavouriteDevice />
-                        </div>
-                        <div className="header-bottom__favourite-button--text">
-                            <p>Избранное</p>
-                        </div>
+                <div style={{display: 'flex', flexFlow: 'row nowrap'}}>
+                    <NavLink to={MAIN_ROUTE}
+                             style={{marginRight: '2rem'}}
+                             className="header-bottom__logo">
+                        <img className="header-bottom__logo-image"
+                             src={logo}
+                             alt="Логотип сайта"
+                             aria-label="Логотип компании TechnoWorld"/>
                     </NavLink>
+
+                    <BurgerMenu/>
                 </div>
+                <div style={{display: 'flex', flexFlow: 'row nowrap', alignItems: 'center'}}>
+                    <div className="header-bottom__favourite">
+                        <NavLink to={`${FAVOURITE_ROUTE}/${userId}`}
+                                 className="header-bottom__favourite-link">
+                            <div className="header-bottom__favourite-button--img">
+                                <FavouriteDevice/>
+                            </div>
+                            <div className="header-bottom__favourite-button--text">
+                                <p>Избранное</p>
+                            </div>
+                        </NavLink>
+                    </div>
 
-                <div className="header-bottom__cart">
-                    <NavLink to={`${CART_ROUTE}/${user.user.id}`}
-                             className="header-bottom__cart-link">
-                        <div className="header-bottom__cart-button--img">
-                            <Cart />
-                        </div>
-                        <div className="header-bottom__cart-button--text">
-                            <p>Корзина</p>
-                        </div>
-                    </NavLink>
-                </div>
+                    <div className="header-bottom__cart">
+                        <NavLink to={`${CART_ROUTE}/${user.user.id}`}
+                                 className="header-bottom__cart-link">
+                            <div className="header-bottom__cart-button--img">
+                                <Cart/>
+                            </div>
+                            <div className="header-bottom__cart-button--text">
+                                <p>Корзина</p>
+                            </div>
+                        </NavLink>
+                    </div>
 
-                <div className="header-bottom__auth">
-                    <NavLink to={user.isAuth ? `${PERSONAL_AREA_ROUTE}/${user.user.id}` : LOGIN_ROUTE}
-                             className="header-bottom__auth-link">
-                        <div className="header-bottom__auth-button--img">
-                            <Auth />
-                        </div>
-                        <div className="header-bottom__auth-button--text">
-                            <p>
-                                {
-                                    user.isAuth ?
-                                        userName
-                                        :
-                                        "Войти"
-                                }
-                            </p>
-                        </div>
-                    </NavLink>
+                    <div className="header-bottom__auth">
+                        <NavLink to={user.isAuth ? `${PERSONAL_AREA_ROUTE}/${user.user.id}` : LOGIN_ROUTE}
+                                 className="header-bottom__auth-link">
+                            <div className="header-bottom__auth-button--img">
+                                <Auth/>
+                            </div>
+                            <div className="header-bottom__auth-button--text">
+                                <p>
+                                    {
+                                        user.isAuth ?
+                                            userName
+                                            :
+                                            "Войти"
+                                    }
+                                </p>
+                            </div>
+                        </NavLink>
+                    </div>
                 </div>
             </div>
 

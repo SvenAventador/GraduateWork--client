@@ -1,9 +1,8 @@
 import React from 'react';
 import {Button, Space, Table} from "antd";
-import {getAllColors, getAllMaterials} from "../../../http/deviceApi";
-import {deleteColor, deleteMaterial} from "../../../http/adminApi";
+import {getAllColors} from "../../../http/deviceApi";
+import {deleteColor} from "../../../http/adminApi";
 import Swal from "sweetalert2";
-import MaterialModal from "../modal/MaterialModal";
 import ColorModal from "../modal/ColorModal";
 
 const ColorComposition = ({colors}) => {
@@ -90,7 +89,6 @@ const ColorComposition = ({colors}) => {
             dataIndex: 'hexValue',
             key: 'hexValue',
             render: (text, record) => {
-                console.log(record.hexValue);
                 return (
                     <Space size={"small"}
                            style={{

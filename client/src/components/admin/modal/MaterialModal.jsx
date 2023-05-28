@@ -28,6 +28,8 @@ const MaterialModal = (props) => {
                     icon: 'success',
                     title: 'Ваушки!',
                     text: 'Материал успешно создан!'
+                }).then(() => {
+                    onOk()
                 });
             })
             .catch((e) => {
@@ -54,6 +56,8 @@ const MaterialModal = (props) => {
                     icon: 'success',
                     title: 'Ваушки!',
                     text: 'Материал успешно обновлен!'
+                }).then(() => {
+                    onOk()
                 });
             })
             .catch((e) => {
@@ -71,6 +75,7 @@ const MaterialModal = (props) => {
                 title={materialId !== null ? 'Изменение материала устройств' : 'Добавление материала устройства'}
                 visible={open}
                 centered
+                maskClosable={false}
                 onOk={onOk}
                 onCancel={onCancel}
                 footer={[
@@ -90,6 +95,7 @@ const MaterialModal = (props) => {
             >
                 <Input
                     placeholder="Введите название материала..."
+                    maxLenght="6"
                     value={materialName}
                     onChange={(e) => setMaterialName(e.target.value)}
                 />

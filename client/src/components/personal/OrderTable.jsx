@@ -90,7 +90,9 @@ const OrderList = ({orders}) => {
                    rowExpandable: (record) => record.order_devices.length !== 0,
                }}
                dataSource={orders.map((order) => ({ ...order, key: order.id }))}
-               pagination={false}
+               pagination={{
+                   defaultPageSize: 10, showSizeChanger: false
+               }}
         />
 
     )

@@ -168,14 +168,14 @@ const AdminUserData = ({orders}) => {
                             },
                             {
                                 id: 4,
-                                value: 'Заказ готов к получению',
-                                label: 'Заказ готов к получению',
+                                value: 'Заказ в городе',
+                                label: 'Заказ в городе',
                                 key: 4
                             },
                             {
                                 id: 5,
-                                value: 'Заказ в городе',
-                                label: 'Заказ в городе',
+                                value: 'Заказ готов к получению',
+                                label: 'Заказ готов к получению',
                                 key: 5
                             },
                             {
@@ -203,13 +203,13 @@ const AdminUserData = ({orders}) => {
 
 
     return (
-        <Table
-            dataSource={orders.map((order) => ({...order, key: order.id}))}
-            columns={userColumns}
-            pagination={{
-                defaultPageSize: 6, showSizeChanger: false
-            }}
-            expandedRowRender={expandableRowRender}
+        <Table style={{backgroundColor: 'white'}}
+               dataSource={orders.map((order) => ({...order, key: order.id}))}
+               columns={userColumns}
+               pagination={{
+                   defaultPageSize: 6, showSizeChanger: false
+               }}
+               expandedRowRender={expandableRowRender}
         />
     );
 };

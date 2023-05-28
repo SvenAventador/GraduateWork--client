@@ -20,7 +20,7 @@ import PersonalArea from "./pages/user/PersonalArea";
 import Cart from "./pages/user/Cart";
 import AdminPanel from "./pages/admin/AdminPanel";
 import Auth from "./pages/Auth";
-import Device from "./pages/user/device/Device";
+import Device from "./pages/user/Device";
 import Shop from "./pages/user/Shop";
 import MainPage from "./pages/MainPage";
 import AboutCompany from "./pages/user/info/AboutCompany";

@@ -62,16 +62,6 @@ export const getOneBrand = async (id) => {
 }
 
 /**
- * Получение одного цвета.
- * @param id - Идентификатор бренда.
- * @returns {Promise<any>}
- */
-export const getOneColor = async (id) => {
-    const {data} = await $host.get('api/color/' + id)
-    return data
-}
-
-/**
  * Получение всех устройств.
  * @param brandId - Идентификтор бренда.
  * @param typeId - Идентификтаор типа.
@@ -90,7 +80,7 @@ export const getAllDevices = async (typeId,
                                     colorId,
                                     deviceMaterialId,
                                     wirelessTypeId,
-                                    limit,
+                                    limit = 9,
                                     page,
                                     priceFrom,
                                     priceTo,
@@ -126,17 +116,6 @@ export const getOneDevice = async (id, userId = undefined) => {
     const {data} = await $host.get(url);
     return data;
 };
-
-/**
- * Поиск товара по названию.
- * @param deviceName - Название устройства.
- * @returns {Promise<void>}
- */
-export const searchDevices = async (deviceName = undefined) => {
-    let url = deviceName ? `api/device/search?deviceName=${deviceName}` : 'api/device'
-    const {data} = await $host.get(url)
-    return data;
-}
 
 //endregion
 

@@ -65,7 +65,7 @@ const Auth = observer(() => {
             data = await login(email, password)
             user.setUser(data)
             user.setIsAuth(true)
-            history(user.user.userRole ? ADMIN_ROUTE : DEVICES_ROUTE)
+            history(user.user.userRole === 'ADMIN' ? ADMIN_ROUTE : DEVICES_ROUTE)
             return Swal.fire({
                 icon: "success",
                 title: "Успешно",

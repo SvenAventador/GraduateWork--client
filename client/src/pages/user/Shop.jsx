@@ -14,7 +14,9 @@ import PriceList from "../../components/devices/sorting/PriceList";
 
 const Shop = observer(() => {
     const {device, user, cart} = React.useContext(Context)
-
+    const [minPrice, setMinPrice] = React.useState(null)
+    const [maxPrice, setMaxPrice] = React.useState(null)
+    
     React.useEffect(() => {
         getAllBrands().then(data => device.setBrand(data))
         getAllColors().then(data => device.setColor(data))
@@ -26,7 +28,7 @@ const Shop = observer(() => {
             null,
             null,
             null,
-            3,
+            9,
             1,
             null,
             null,
@@ -35,8 +37,10 @@ const Shop = observer(() => {
             device.setMinPrice(data.minPrice)
             device.setMaxPrice(data.maxPrice)
             device.setTotalCount(data.devices.count);
+            setMaxPrice(device.maxPrice)
+            setMinPrice(device.minPrice)
         });
-    }, [device, device.selectedTypes])
+    }, [device, device.selectedTypes, device.rating])
 
     React.useEffect(() => {
         if (user.isAuth) {
@@ -53,7 +57,7 @@ const Shop = observer(() => {
             device.selectedColors?.id,
             device.selectedMaterials?.id,
             device.selectedWireless?.id,
-            3,
+            9,
             device.page,
             device.minPrice,
             device.maxPrice,
@@ -72,21 +76,25 @@ const Shop = observer(() => {
         device.selectedWireless,
         device.selectedRating,
         device.maxPrice,
-        device.minPrice
+        device.minPrice,
+        device.rating
     ])
-
+    console.log(device)
     return (
         <div className="shop site-container">
             <div className="shop__left">
                 <div className="shop__left--btn">
                     <button className="shop__left--btn-clear"
                             onClick={React.useCallback(() => {
+                                device.setSelectedTypes({})
                                 device.setSelectedBrands({})
                                 device.setSelectedColors({})
                                 device.setSelectedMaterials({})
                                 device.setSelectedWireless({})
                                 device.setSelectedRating(null)
-                            }, [device])}>
+                                device.setMinPrice(minPrice)
+                                device.setMaxPrice(maxPrice)
+                            }, [device, maxPrice, minPrice])}>
                         Очистить фильтры
                     </button>
                 </div>

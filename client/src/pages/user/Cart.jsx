@@ -38,7 +38,9 @@ const Cart = observer(() => {
     }, [cart.cartId])
 
     React.useEffect(() => {
-        setDeviceAmount(clientOrder.map(device => device.cart_devices[0].amountDevice))
+        if (Array.isArray(clientOrder)) {
+            setDeviceAmount(clientOrder.map(device => device.cart_devices[0].amountDevice))
+        }
     }, [clientOrder])
 
     React.useEffect(() => {

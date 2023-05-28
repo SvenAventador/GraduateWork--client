@@ -44,12 +44,12 @@ function ImageSlider({images}) {
                 )}
             </div>
             {
-                images.length > 5 && (
+                images.length > 5 ? (
                     <div className="image-list--secondary">
                         <button className="image-list__btn--prev btn-reset"
                                 onClick={handlePrevClick}
                                 disabled={startIndex === 0}>
-                            <Left />
+                            <Left/>
                         </button>
                         {imagesToShow.map((image, index) => (
                             <img
@@ -67,8 +67,23 @@ function ImageSlider({images}) {
                             className="image-list__btn--next btn-reset"
                             onClick={handleNextClick}
                             disabled={startIndex + 5 >= images.length}>
-                            <Right />
+                            <Right/>
                         </button>
+                    </div>
+                ) : (
+                    <div className="image-list--secondary">
+                        {imagesToShow.map((image, index) => (
+                            <img
+                                key={image.id}
+                                src={process.env.REACT_APP_API_PATH + '/' + image.imagePath}
+                                alt=""
+                                style={{
+                                    border:
+                                        index + startIndex === selectedImageIndex ? "1px solid var(--borderColor)" : "none", // используем index и startIndex
+                                }}
+                                onClick={() => handleImageClick(image, images.indexOf(image))}
+                            />
+                        ))}
                     </div>
                 )
             }

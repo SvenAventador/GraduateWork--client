@@ -41,7 +41,7 @@ const DeviceItem = ({device, deviceBrand}) => {
         };
 
         markDevice();
-    }, [device.id, device.rating]);
+    }, [device.id, device.rating, device]);
 
     const handleAddToCart = (event) => {
         event.stopPropagation();

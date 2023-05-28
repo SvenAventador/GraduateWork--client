@@ -29,6 +29,7 @@
 
     &__favourite {
       @include flex-v-center;
+      margin-right: 1rem;
 
       &-link {
         @include flex-v-center;
@@ -47,6 +48,7 @@
 
     &__cart {
       @include flex-v-center;
+      margin-right: 1rem;
 
       &-link {
         @include flex-v-center;
@@ -57,6 +59,8 @@
 
     &__auth {
       @include flex-v-center;
+      margin-right: 1rem;
+
       &-link {
         @include flex-v-center;
         justify-content: center;
