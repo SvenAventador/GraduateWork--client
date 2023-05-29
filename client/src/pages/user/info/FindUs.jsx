@@ -3,47 +3,35 @@ import {NavLink} from "react-router-dom";
 
 const FindUs = () => {
     return (
-        <section className="site-container">
-            <div style={{marginTop: '1rem'}}>
-                <p style={{lineHeight: '1.5'}}>
-                    Внимание! При самовывозе необходимо заранее оформить заказ. Не забудьте связаться с нами перед
-                    приездом.
-                </p>
-
-                <p style={{lineHeight: '1.5'}}>
-                    Забрать заказанный товар вы можете в шоуруме TechnoWorld в Казани,
-                    расположенном по адресу:
-                </p>
-                <p style={{lineHeight: '1.5'}}>
-                    <NavLink to={'https://yandex.ru/maps/43/kazan/house/bolshaya_krasnaya_ulitsa_55/YEAYdwRjQUAPQFtvfXt4d3VnYw==/?ll=49.133857%2C55.796947&z=16'}
-                             target="_blank"
-                             rel="noopener noreferrer">
-                        <b><i><u style={{color: '#085294'}}>Казань, Большая Красная, д. 55 к. 204 <br/></u></i></b>
-                    </NavLink>
-                </p>
-
-                <p style={{lineHeight: '1.5'}}>
-                    Ближайшие станции метро -
-                    <b>Габдуллы Тукая</b> или&nbsp;
-                    <b>Кремлевская</b>
-                    <NavLink to={'https://yandex.ru/maps/43/kazan/house/bolshaya_krasnaya_ulitsa_55/YEAYdwRjQUAPQFtvfXt4d3VnYw==/?ll=49.133857%2C55.796947&z=16'}
-                             target="_blank"
-                             rel="noopener noreferrer">
-                        <b><i><br/></i></b>
-                    </NavLink>
-                </p>
-                <p>Пешая прогулка до нас составит в среднем 20 минут.</p>
-                <p>График работы здания - <b>Понедельник - Суббота с 7:00 до 20:00</b></p>
-                <p>Для оформления разового пропуска нужно обратиться к охране и назвать номер кабинета</p>
-                <p><br/><br/></p>
-                <div style={{width: '100%', height: '700px'}}>
-                    <iframe
-                        src="https://yandex.ru/map-widget/v1/?um=constructor%3Ab8de29f798c47abb19e565590b3b65ea7060937386c4fddbe97f5e61cae38022&amp;source=constructor"
-                        width="100%" height="100%" frameBorder="0"></iframe>
-                </div>
-
+        <div className="find site-container">
+            <p>Внимание! При самовывозе необходимо заранее оформить заказ.</p>
+            <p>Забрать заказанный товар вы&nbsp;можете в&nbsp;шоуруме Биг Гик в&nbsp;Москве, расположенном
+                по&nbsp;адресу:</p>
+            <p>
+                <NavLink
+                    to={"https://yandex.ru/maps/org/kazanskiy_natsionalny_issledovatelskiy_tekhnicheskiy_universitet_im_a_n_tupoleva_kai_priyemnaya_komissiya/1708272014/?ll=49.134583%2C55.804027&mode=search&sll=49.134583%2C55.804004&text=7%20%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%B0%D0%B8&z=12"}>
+                    <b>Казань, Большая Красная, д.&nbsp;55&nbsp;к.&nbsp;204</b>
+                </NavLink>
+            </p>
+            <p>
+                Ближайшие станции метро&nbsp;&mdash; <b>Кремлевская</b> или <b>Тукая</b>
+            </p>
+            <p>
+                Пешая прогулка до&nbsp;нас составит в&nbsp;среднем 15&nbsp;минут.
+            </p>
+            <p>
+                График работы шоурума&nbsp;&mdash; <b>ежедневно с&nbsp;11:00 до&nbsp;20:00</b>
+            </p>
+            <p>
+                Для оформления разового пропуска нужно обратиться к&nbsp;охране и&nbsp;назвать номер офиса (204) или
+                название компании (ТехноВорлд). Для оформления пропуска требуется документ, удостоверяющий личность.
+            </p>
+            <div className="contacts__yandex">
+                <iframe
+                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A42aad5918d20be5a90d41ac44339f66cc54fdbe1da01cd7f24dac4b6c55d4092&amp;source=constructor"
+                    width="100%" height="700" frameBorder="0"></iframe>
             </div>
-        </section>
+        </div>
     );
 };
 

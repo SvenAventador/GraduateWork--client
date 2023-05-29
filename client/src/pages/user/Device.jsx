@@ -136,11 +136,20 @@ const Device = observer(() => {
                                         onClick={(event) => {
                                             createCartItem(cart.cartId, +id)
                                                 .then((data) => {
-                                                    Swal.fire({
-                                                        icon: 'success',
-                                                        title: 'Ваушки!',
-                                                        text: data.message,
-                                                    });
+                                                    console.log(data)
+                                                    if (data.status === 200) {
+                                                        Swal.fire({
+                                                            icon: 'success',
+                                                            title: 'Ваушки!',
+                                                            text: data.message,
+                                                        });
+                                                    } else if (data.status === 409) {
+                                                        Swal.fire({
+                                                            icon: 'error',
+                                                            title: 'Внимание!',
+                                                            text: data.message,
+                                                        });
+                                                    }
                                                 });
                                         }}>
                                     Добавить в корзину

@@ -1,0 +1,28 @@
+.find {
+  margin-top: 1rem;
+
+  & p {
+    text-indent: 10px;
+    font-size: 16px;
+    text-align: justify;
+    margin-bottom: 0.5rem;
+  }
+
+  & a {
+    font-size: 16px;
+    text-align: justify;
+    text-decoration: underline;
+    color: #0da1b0;
+    transition: .5s ease-in-out;
+  }
+
+  & a:hover {
+    color: #41efff;
+    transition: .5s ease-in-out;
+  }
+
+  &__yandex {
+    margin-top: 1rem;
+    margin-bottom: 4rem;
+  }
+}

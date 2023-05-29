@@ -1,0 +1,27 @@
+.tradeIn {
+
+  & h3 {
+    font-size: medium;
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+
+  & p {
+    text-indent: 10px;
+    font-size: 16px;
+    text-align: justify;
+  }
+
+  & a {
+    font-size: 16px;
+    text-align: justify;
+    text-decoration: underline;
+    color: #0da1b0;
+    transition: .5s ease-in-out;
+  }
+
+  & a:hover {
+    color: #41efff;
+    transition: .5s ease-in-out;
+  }
+}

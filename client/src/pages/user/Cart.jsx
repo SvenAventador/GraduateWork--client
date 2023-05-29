@@ -2,7 +2,7 @@ import React from 'react';
 import {observer} from "mobx-react-lite";
 import {Context} from "../../index";
 import {NavLink, useNavigate} from "react-router-dom";
-import {getAllCartItem, getCartId, removeAllItems, removeCartItem} from "../../http/cartApi";
+import {getAllCartItem, getCartId, removeAllItems, removeCartItem, updateAmount} from "../../http/cartApi";
 import {CART_ROUTE, CURRENT_DEVICE_ROUTE, ORDER_ROUTE} from "../../utils/consts";
 import Swal from "sweetalert2";
 import queryString from 'query-string';
@@ -54,16 +54,30 @@ const Cart = observer(() => {
         calculateTotalCount()
     }, [clientOrder, deviceAmount])
 
-    const handleAddGood = (index) => {
-        const newDeviceAmount = [...deviceAmount];
-        newDeviceAmount[index]++;
-        setDeviceAmount(newDeviceAmount);
+    const handleAddGood = (id, index) => {
+        const intervalId = setInterval(() => {
+            const newDeviceAmount = [...deviceAmount];
+            newDeviceAmount[index]++;
+            setDeviceAmount(newDeviceAmount);
+            updateAmount(id, newDeviceAmount[index])
+        }, 1000)
+
+        setTimeout(() => {
+            clearTimeout(intervalId)
+        }, 1000)
     }
 
-    const handleDeleteGood = (index) => {
-        const newDeviceAmount = [...deviceAmount];
-        newDeviceAmount[index]--;
-        setDeviceAmount(newDeviceAmount);
+    const handleDeleteGood = (id, index) => {
+        const intervalId = setInterval(() => {
+            const newDeviceAmount = [...deviceAmount];
+            newDeviceAmount[index]--;
+            setDeviceAmount(newDeviceAmount);
+            updateAmount(id, newDeviceAmount[index])
+        }, 1000)
+
+        setTimeout(() => {
+            clearTimeout(intervalId)
+        }, 1000)
     }
 
     const handleOrderClick = () => {
@@ -142,14 +156,16 @@ const Cart = observer(() => {
                                                                 <div className="cart-device__amount">
                                                                     <button className={"cart-device__amount--delete btn-reset"}
                                                                             disabled={deviceAmount[index] === 1}
-                                                                            onClick={() => handleDeleteGood(index)}>
+                                                                            onClick={() => handleDeleteGood(device.id, index)}>
                                                                         <Minus/>
                                                                     </button>
                                                                     <span
                                                                         className="cart-device__amount">{deviceAmount[index]}</span>
                                                                     <button className="cart-device__amount--add-active btn-reset"
-                                                                            disabled={deviceAmount[index] === 30}
-                                                                            onClick={() => handleAddGood(index)}>
+                                                                            disabled={deviceAmount[index] === device.deviceCount}
+                                                                            onClick={() => {
+                                                                                handleAddGood(device.id, index)
+                                                                            }}>
                                                                         <Plus/>
                                                                     </button>
                                                                 </div>

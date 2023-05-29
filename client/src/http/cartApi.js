@@ -16,6 +16,21 @@ export const createCartItem = async (cartId, deviceId) => {
 }
 
 /**
+ * Изменение количества товара в корзине.
+ * @param id - Идентификатор устройства.
+ * @param deviceAmount - Значение количества устройств..
+ * @returns {Promise<any>}
+ */
+export const updateAmount = async (id, deviceAmount) => {
+    try {
+        const { data } = await $authHost.put('/api/cart/', {id, deviceAmount})
+        return data;
+    } catch (e) {
+        return e.response.data;
+    }
+};
+
+/**
  * Получение всех товаров в корзине.
  * @param cartId - Идентификатор корзины.
  * @returns {Promise<any>}

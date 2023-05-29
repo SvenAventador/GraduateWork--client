@@ -109,6 +109,24 @@ const AdminDeviceData = ({device, deviceType, deviceBrand, deviceColor, deviceMa
             key: 'devicePrice'
         },
         {
+            title: 'Количество устройств',
+            dataIndex: 'deviceCount',
+            key: 'deviceCount',
+            render: (dataCount) => {
+                let color;
+                if (dataCount <= 10) {
+                    color = "red";
+                } else if (dataCount > 10 && dataCount < 20) {
+                    color = "orange";
+                } else {
+                    color = "green";
+                }
+                return (
+                    <span style={{ color }}>Осталось {dataCount} шт.</span>
+                );
+            }
+        },
+        {
             title: 'Тип устройства',
             dataIndex: 'typeId',
             key: 'typeId',
@@ -180,7 +198,7 @@ const AdminDeviceData = ({device, deviceType, deviceBrand, deviceColor, deviceMa
             title: 'Действия',
             key: 'action',
             render: (record) => (
-                <Space size="small">
+                <Space size="small" style={{display: "flex", flexFlow: "column"}}>
                     <Button onClick={() => showUpdateModal(record.id)}>Изменить устройство</Button>
                     <Button onClick={() => deleteItem(record.id)}>Удалить устройство</Button>
                 </Space>

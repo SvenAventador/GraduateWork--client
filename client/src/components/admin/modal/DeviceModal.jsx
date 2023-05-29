@@ -17,7 +17,13 @@ import Swal from "sweetalert2";
 const {TextArea} = Input;
 
 const DraggableUploadListItem = ({originNode, file}) => {
-    const {attributes, listeners, setNodeRef, transform, transition, isDragging} = useSortable({
+    const {
+        attributes,
+        listeners,
+        setNodeRef,
+        transform,
+        transition,
+        isDragging} = useSortable({
         id: file.uid,
     });
     const style = {
@@ -64,6 +70,7 @@ const DeviceModal = (props) => {
     const [deviceName, setDeviceName] = React.useState(device?.deviceName || '')
     const [devicePrice, setDevicePrice] = React.useState(device?.devicePrice || 0)
     const [deviceDescription, setDeviceDescription] = React.useState(device?.deviceDescription || '')
+    const [deviceCount, setDeviceCount] = React.useState(device?.deviceCount || 0)
 
     const [typeId, setTypeId] = React.useState(null)
     const [brandId, setBrandId] = React.useState(null)
@@ -75,6 +82,7 @@ const DeviceModal = (props) => {
         if (device === null) {
             setDeviceName('');
             setDevicePrice(0);
+            setDeviceCount(0)
             setDeviceDescription('');
             setFileList([]);
             setFileNames([]);
@@ -88,6 +96,7 @@ const DeviceModal = (props) => {
             setDeviceName(device?.deviceName);
             setDevicePrice(device?.devicePrice);
             setDeviceDescription(device?.deviceDescription);
+            setDeviceCount(device?.deviceCount)
             setTypeId(device?.typeId || null);
             setBrandId(device?.brandId || null)
             setColorId(device?.colorId || null)
@@ -136,7 +145,11 @@ const DeviceModal = (props) => {
     };
 
     const onChangeSelect = (value, setValue) => {
-        if (value === "Выберите тип устройства" || value === "Выберите бренд устройства" || value === "Выберите цвет устройства" || value === "Выберите материал устройства" || value === "Выберите дополнение устройства") {
+        if (value === "Выберите тип устройства" ||
+            value === "Выберите бренд устройства" ||
+            value === "Выберите цвет устройства" ||
+            value === "Выберите материал устройства" ||
+            value === "Выберите дополнение устройства") {
             setValue(null);
         } else {
             setValue(value);
@@ -158,6 +171,14 @@ const DeviceModal = (props) => {
                 icon: 'error',
                 title: 'Внимание!',
                 text: 'Минимальная цена на устройство в нашем магазине 10.000 рублей, а максимальная 1000000 рублей!'
+            })
+        }
+
+        if (!deviceCount || deviceCount < 0) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Внимание!',
+                text: 'Количество товара на складе должно быть больше 0!'
             })
         }
 
@@ -248,6 +269,7 @@ const DeviceModal = (props) => {
         formData.append('deviceName', deviceName)
         formData.append('devicePrice', devicePrice)
         formData.append('deviceDescription', deviceDescription)
+        formData.append('deviceCount', deviceCount)
         formData.append('typeId', typeId)
         formData.append('brandId', brandId)
         formData.append('colorId', colorId)
@@ -344,6 +366,7 @@ const DeviceModal = (props) => {
         formData.append('id', device.id)
         formData.append('deviceName', deviceName)
         formData.append('devicePrice', devicePrice)
+        formData.append('deviceCount', deviceCount)
         formData.append('deviceDescription', deviceDescription)
         formData.append('typeId', typeId)
         formData.append('brandId', brandId)
@@ -402,6 +425,11 @@ const DeviceModal = (props) => {
                        placeholder="Введите цену устройства..."
                        prefix='₽'
                 />
+                <Input value={deviceCount}
+                       onChange={(e) => setDeviceCount(e.target.value)}
+                       style={{marginBottom: '1rem'}}
+                       placeholder="Введите количество устройства..."
+                />
                 <TextArea value={deviceDescription}
                           onChange={(e) => setDeviceDescription(e.target.value)}
                           style={{marginBottom: '1rem'}}
@@ -409,7 +437,12 @@ const DeviceModal = (props) => {
                           placeholder="Введите описание устройства..."
                           prefix='₽'
                 />
-                <div style={{display: "flex", flexFlow: 'row wrap', alignItems: 'center', marginBottom: '1rem'}}>
+                <div style={{
+                    display: "flex",
+                    flexFlow: 'row wrap',
+                    alignItems: 'center',
+                    marginBottom: '1rem'
+                }}>
                     {
                         device === null ? (
                                 <>

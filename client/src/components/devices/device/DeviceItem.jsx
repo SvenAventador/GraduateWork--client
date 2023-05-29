@@ -57,11 +57,19 @@ const DeviceItem = ({device, deviceBrand}) => {
 
         createCartItem(cart.cartId, device.id)
             .then((data) => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Ваушки!',
-                    text: data.message,
-                });
+                if (data.status === 200) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Ваушки!',
+                        text: data.message,
+                    });
+                } else if (data.status === 409) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Внимание!',
+                        text: data.message,
+                    });
+                }
             })
             .catch(() => {
                 Swal.fire({
