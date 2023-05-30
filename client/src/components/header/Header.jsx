@@ -140,7 +140,7 @@ const Header = observer(() => {
                 </div>
                 <div style={{display: 'flex', flexFlow: 'row nowrap', alignItems: 'center'}}>
                     <div className="header-bottom__favourite">
-                        <NavLink to={`${FAVOURITE_ROUTE}/${userId}`}
+                        <NavLink to={user.isAuth ? `${FAVOURITE_ROUTE}/${userId}` : ''}
                                  className="header-bottom__favourite-link">
                             <div className="header-bottom__favourite-button--img">
                                 <FavouriteDevice/>
@@ -152,7 +152,7 @@ const Header = observer(() => {
                     </div>
 
                     <div className="header-bottom__cart">
-                        <NavLink to={`${CART_ROUTE}/${user.user.id}`}
+                        <NavLink to={user.isAuth ? `${CART_ROUTE}/${user.user.id}` : ''}
                                  className="header-bottom__cart-link">
                             <div className="header-bottom__cart-button--img">
                                 <Cart/>

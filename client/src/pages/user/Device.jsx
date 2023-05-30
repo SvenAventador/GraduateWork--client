@@ -120,7 +120,6 @@ const Device = observer(() => {
                                 </div>
                         }
                     </div>
-
                     <div className="device-info__right--description">
                         {device.deviceDescription}
                     </div>
@@ -133,24 +132,21 @@ const Device = observer(() => {
                         {
                             user.user.id ?
                                 <button className="device-info__right--buy-btn btn-reset"
-                                        onClick={(event) => {
-                                            createCartItem(cart.cartId, +id)
-                                                .then((data) => {
-                                                    console.log(data)
-                                                    if (data.status === 200) {
-                                                        Swal.fire({
-                                                            icon: 'success',
-                                                            title: 'Ваушки!',
-                                                            text: data.message,
-                                                        });
-                                                    } else if (data.status === 409) {
-                                                        Swal.fire({
-                                                            icon: 'error',
-                                                            title: 'Внимание!',
-                                                            text: data.message,
-                                                        });
-                                                    }
+                                        onClick={async () => {
+                                            const data = await createCartItem(cart.cartId, +id);
+                                            if (data.status === 200) {
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: 'Ваушки!',
+                                                    text: data.message,
                                                 });
+                                            } else if (data.status === 409) {
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Внимание!',
+                                                    text: data.message,
+                                                });
+                                            }
                                         }}>
                                     Добавить в корзину
                                 </button>

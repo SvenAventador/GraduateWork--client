@@ -43,7 +43,7 @@ const DeviceItem = ({device, deviceBrand}) => {
         markDevice();
     }, [device.id, device.rating, device]);
 
-    const handleAddToCart = (event) => {
+    const handleAddToCart = async (event) => {
         event.stopPropagation();
 
         if (!user.user.id) {
@@ -55,29 +55,20 @@ const DeviceItem = ({device, deviceBrand}) => {
             return;
         }
 
-        createCartItem(cart.cartId, device.id)
-            .then((data) => {
-                if (data.status === 200) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Ваушки!',
-                        text: data.message,
-                    });
-                } else if (data.status === 409) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Внимание!',
-                        text: data.message,
-                    });
-                }
-            })
-            .catch(() => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Ошибка!',
-                    text: 'Произошла ошибка при добавлении товара в корзину.',
-                });
+        const data = await createCartItem(cart.cartId, +device.id);
+        if (data.status === 200) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Ваушки!',
+                text: data.message,
             });
+        } else if (data.status === 409) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Внимание!',
+                text: data.message,
+            });
+        }
     };
 
     if (isLoading) {
