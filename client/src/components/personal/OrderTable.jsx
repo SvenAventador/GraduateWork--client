@@ -73,6 +73,7 @@ const OrderList = ({orders}) => {
                                    <div className="order__purchase"
                                         key={index}>
                                        <img
+                                           style={{width:'200px', height: '200px'}}
                                            src={`${process.env.REACT_APP_API_PATH}/${device.device.images[0].imagePath}`}
                                            className="order__purchase--img"
                                            aria-label="Изобрадение купленного устройства"

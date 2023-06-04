@@ -5,9 +5,12 @@ import Swal from "sweetalert2";
 
 const TypeModal = (props) => {
     const { open, onOk, nameType, typeId, onCancel } = props;
-
     const [typeName, setTypeName] = React.useState('');
 
+    const clearData = () => {
+        setTypeName('')
+        onOk()
+    }
     React.useEffect(() => {
         setTypeName(nameType)
     }, [nameType])
@@ -75,10 +78,10 @@ const TypeModal = (props) => {
                 visible={open}
                 centered
                 maskClosable={false}
-                onOk={onOk}
-                onCancel={onCancel}
+                onOk={clearData}
+                onCancel={clearData}
                 footer={[
-                    <Button onClick={onCancel}>Отмена</Button>,
+                    <Button onClick={clearData}>Отмена</Button>,
                     <Button
                         onClick={() => {
                             if (typeId !== null) {
@@ -86,7 +89,7 @@ const TypeModal = (props) => {
                             } else {
                                 createAdminType();
                             }
-                            onOk()
+                            clearData()
                         }}>
                         Сохранить данные
                     </Button>

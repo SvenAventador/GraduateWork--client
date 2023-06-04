@@ -78,6 +78,22 @@ const DeviceModal = (props) => {
     const [materialId, setMaterialId] = React.useState(null)
     const [wirelessId, setWirelessId] = React.useState(null)
 
+    const clearData = () => {
+        setFileList([])
+        setFileNames([])
+        setInfo([])
+        setDeviceName('')
+        setDeviceCount(0)
+        setDeviceDescription('')
+        setDevicePrice(0)
+        setTypeId(null)
+        setBrandId(null)
+        setColorId(null)
+        setMaterialId(null)
+        setWirelessId(null)
+        onOk()
+    }
+
     React.useEffect(() => {
         if (device === null) {
             setDeviceName('');
@@ -399,15 +415,17 @@ const DeviceModal = (props) => {
                 centered
                 width={1245}
                 maskClosable={false}
-                onOk={onOk}
-                onCancel={onCancel}
+                onOk={clearData}
+                onCancel={clearData}
                 footer={[
-                    <Button onClick={onCancel}>Отмена</Button>,
+                    <Button onClick={clearData}>Отмена</Button>,
                     <Button onClick={() => {
                         if (device !== null) {
                             updateAdminDevice()
+                            clearData()
                         } else {
                             createAdminDevice()
+                            clearData()
                         }
                     }}>
                         Сохранить данные
@@ -426,6 +444,7 @@ const DeviceModal = (props) => {
                        prefix='₽'
                 />
                 <Input value={deviceCount}
+                       prefix='Кол-во'
                        onChange={(e) => setDeviceCount(e.target.value)}
                        style={{marginBottom: '1rem'}}
                        placeholder="Введите количество устройства..."

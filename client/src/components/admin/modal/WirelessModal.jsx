@@ -7,6 +7,11 @@ const WirelessModal = (props) => {
     const {open, onOk, nameWireless, wirelessId, onCancel} = props;
     const [wirelessName, setWirelessName] = React.useState('');
 
+    const clearData = () => {
+        setWirelessName('')
+        onOk()
+    }
+
     React.useEffect(() => {
         if (nameWireless !== null) {
             setWirelessName(nameWireless)
@@ -76,10 +81,10 @@ const WirelessModal = (props) => {
                 visible={open}
                 centered
                 maskClosable={false}
-                onOk={onOk}
-                onCancel={onCancel}
+                onOk={clearData}
+                onCancel={clearData}
                 footer={[
-                    <Button onClick={onCancel}>Отмена</Button>,
+                    <Button onClick={clearData}>Отмена</Button>,
                     <Button
                         onClick={() => {
                             if (wirelessId !== null) {
@@ -87,7 +92,7 @@ const WirelessModal = (props) => {
                             } else {
                                 createAdminWireless();
                             }
-                            onOk()
+                            clearData()
                         }}>
                         Сохранить данные
                     </Button>

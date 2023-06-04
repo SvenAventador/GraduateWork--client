@@ -7,6 +7,11 @@ const MaterialModal = (props) => {
     const {open, onOk, nameMaterial, materialId, onCancel} = props;
     const [materialName, setMaterialName] = React.useState('');
 
+    const clearData = () => {
+        setMaterialName('')
+        onOk()
+    }
+
     React.useEffect(() => {
         if (nameMaterial !== null) {
             setMaterialName(nameMaterial)
@@ -76,10 +81,10 @@ const MaterialModal = (props) => {
                 visible={open}
                 centered
                 maskClosable={false}
-                onOk={onOk}
-                onCancel={onCancel}
+                onOk={clearData}
+                onCancel={clearData}
                 footer={[
-                    <Button onClick={onCancel}>Отмена</Button>,
+                    <Button onClick={clearData}>Отмена</Button>,
                     <Button
                         onClick={() => {
                             if (materialId !== null) {
@@ -87,7 +92,7 @@ const MaterialModal = (props) => {
                             } else {
                                 createAdminMaterial();
                             }
-                            onOk()
+                            clearData()
                         }}>
                         Сохранить данные
                     </Button>

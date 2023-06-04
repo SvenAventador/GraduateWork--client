@@ -117,7 +117,7 @@ const Order = () => {
             return Swal.fire({
                 icon: 'error',
                 title: 'Внимение!',
-                text: "Пожалуйста, введите корректный тип оплаты!"
+                text: "Пожалуйста, выберите корректный тип оплаты!"
             })
         }
 
@@ -306,9 +306,10 @@ const Order = () => {
                                 myOrder.map((device) => (
                                     <li className="order__right--images-item"
                                         key={device.id}>
-                                        <img src={`${process.env.REACT_APP_API_PATH}/${device.images[0].imagePath}`}
-                                             alt="images device"
-                                             aria-label="device images"/>
+                                        <img
+                                            src={`${process.env.REACT_APP_API_PATH}/${device.images[0].imagePath}`}
+                                            alt="images device"
+                                            aria-label="device images"/>
                                     </li>
                                 ))
                             }

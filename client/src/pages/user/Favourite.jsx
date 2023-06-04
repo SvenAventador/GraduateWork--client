@@ -4,7 +4,6 @@ import {ReactComponent as Delete} from "../../assets/svg/cart/delete.svg";
 import {NavLink} from "react-router-dom";
 import {CURRENT_DEVICE_ROUTE} from "../../utils/consts";
 
-
 const Favourite = () => {
     const {user} = React.useContext(Context)
     let [devices, setDevices] = React.useState(null)

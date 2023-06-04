@@ -3,7 +3,8 @@
 .device-info {
 
   &__top {
-    @include flex-row-start
+    @include flex-row-start;
+    width: max-content;
   }
 
   &__left {
@@ -51,10 +52,11 @@
 
     &--description {
       font-size: 20px;
-      text-align: left;
+      text-align: justify;
       word-break: break-all;
       line-height: 1;
       color: #A0A0A0;
+      width: 600px;
     }
 
     &--buy {

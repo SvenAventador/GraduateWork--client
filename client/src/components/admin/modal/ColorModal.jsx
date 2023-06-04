@@ -8,6 +8,11 @@ const ColorModal = (props) => {
     const [colorName, setColorName] = React.useState('');
     const [hexValue, setHexValue] = React.useState('')
 
+    const clearData = () => {
+        setColorName('')
+        onOk()
+    }
+
     React.useEffect(() => {
         setColorName(nameColor);
     }, [nameColor]);
@@ -94,10 +99,10 @@ const ColorModal = (props) => {
                 visible={open}
                 centered
                 maskClosable={false}
-                onOk={onOk}
-                onCancel={onCancel}
+                onOk={clearData}
+                onCancel={clearData}
                 footer={[
-                    <Button onClick={onCancel}>Отмена</Button>,
+                    <Button onClick={clearData}>Отмена</Button>,
                     <Button
                         onClick={() => {
                             if (colorId !== null) {
@@ -105,6 +110,7 @@ const ColorModal = (props) => {
                             } else {
                                 createAdminColor();
                             }
+                            clearData()
                         }}
                     >
                         Сохранить данные

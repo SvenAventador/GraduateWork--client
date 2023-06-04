@@ -94,6 +94,7 @@ const DeviceItem = ({device, deviceBrand}) => {
             <div className="device__image">
                 {device.images.map((image, index) => (
                     <img
+                        style={{width: '150px', height: '150px'}}
                         src={`${process.env.REACT_APP_API_PATH}${image.imagePath}`}
                         alt={`Device images ${index + 1}`}
                         aria-label={`Device Image ${index + 1}`}

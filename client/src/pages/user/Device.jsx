@@ -85,6 +85,19 @@ const Device = observer(() => {
             <div className="device-info__top">
                 <div className="device-info__left">
                     <ImageSlider images={device.images}/>
+                    <div style={{marginTop: '2rem'}} className="device-info__bottom">
+                        <p className="device-info__bottom--title">Характеристики</p>
+                        {device.info.map((info) =>
+                            <div className="device-info__characteristics" key={info.id}>
+                                <div className="device-info__characteristics--name">
+                                    {info.infoTitle}
+                                </div>
+                                <div className="device-info__characteristics--description">
+                                    {info.infoDescription}
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
                 <div className="device-info__right">
                     <div className="device-info__right--name">
@@ -164,19 +177,6 @@ const Device = observer(() => {
                         }
                     </div>
                 </div>
-            </div>
-            <div className="device-info__bottom">
-                <p className="device-info__bottom--title">Характеристики</p>
-                {device.info.map((info) =>
-                    <div className="device-info__characteristics" key={info.id}>
-                        <div className="device-info__characteristics--name">
-                            {info.infoTitle}
-                        </div>
-                        <div className="device-info__characteristics--description">
-                            {info.infoDescription}
-                        </div>
-                    </div>
-                )}
             </div>
         </div>
     );

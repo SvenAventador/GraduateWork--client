@@ -2,7 +2,7 @@
 
 .device {
   width: 250px;
-  height: 325px;
+  height: max-content;
   border-radius: 5px;
   border: 1px solid var(--borderColor);
   padding: 2rem;

@@ -138,6 +138,7 @@ const Cart = observer(() => {
                                                                      className="cart-device__left">
                                                                 <div className="cart_device__left--image">
                                                                     <img
+                                                                        style={{height: '200px', width: '200px'}}
                                                                         src={`${process.env.REACT_APP_API_PATH}/${device.images[0].imagePath}`}
                                                                         alt="Device images"
                                                                         aria-label="Device Image"/>

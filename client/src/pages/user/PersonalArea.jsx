@@ -12,7 +12,7 @@ const PersonalArea = observer(() => {
     React.useEffect(() => {
         getAllOrder(id)
             .then((response) => {
-                const data = response.orders; // Проверьте поле, где хранятся данные заказов
+                const data = response.orders;
                 setClientOrder(data);
             })
             .catch((error) => {

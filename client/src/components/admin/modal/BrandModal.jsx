@@ -7,6 +7,11 @@ const BrandModal = (props) => {
     const {open, onOk, nameBrand, brandId, onCancel} = props;
     const [brandName, setBrandName] = React.useState('');
 
+    const clearData = () => {
+        setBrandName('')
+        onOk()
+    }
+
     React.useEffect(() => {
         setBrandName(nameBrand)
     }, [nameBrand])
@@ -74,10 +79,10 @@ const BrandModal = (props) => {
                 visible={open}
                 centered
                 maskClosable={false}
-                onOk={onOk}
-                onCancel={onCancel}
+                onOk={clearData}
+                onCancel={clearData}
                 footer={[
-                    <Button onClick={onCancel}>Отмена</Button>,
+                    <Button onClick={clearData}>Отмена</Button>,
                     <Button
                         onClick={() => {
                             if (brandId !== null) {
@@ -85,7 +90,7 @@ const BrandModal = (props) => {
                             } else {
                                 createAdminBrand();
                             }
-                            onOk()
+                            clearData()
                         }}>
                         Сохранить данные
                     </Button>
