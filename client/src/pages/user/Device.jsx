@@ -147,19 +147,11 @@ const Device = observer(() => {
                                 <button className="device-info__right--buy-btn btn-reset"
                                         onClick={async () => {
                                             const data = await createCartItem(cart.cartId, +id);
-                                            if (data.status === 200) {
-                                                Swal.fire({
-                                                    icon: 'success',
-                                                    title: 'Ваушки!',
-                                                    text: data.message,
-                                                });
-                                            } else if (data.status === 409) {
-                                                Swal.fire({
-                                                    icon: 'error',
-                                                    title: 'Внимание!',
-                                                    text: data.message,
-                                                });
-                                            }
+                                            Swal.fire({
+                                                icon: data.message === 'Товар успешно добавлен в корзину!' ? 'success' : 'error',
+                                                title: data.message === 'Товар успешно добавлен в корзину!' ? 'Ваушки!' : 'Внимание!',
+                                                text: data.message,
+                                            });
                                         }}>
                                     Добавить в корзину
                                 </button>

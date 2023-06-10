@@ -3,6 +3,7 @@
 .shop {
   @include flex;
   flex-flow: row nowrap;
+  margin-bottom: 5rem;
 
   &__left {
     margin-right: 3rem;

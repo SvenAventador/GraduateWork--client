@@ -11,7 +11,7 @@ import {
     TRADE_IN_ROUTE,
     LOGIN_ROUTE,
     CART_ROUTE,
-    FAVOURITE_ROUTE, PERSONAL_AREA_ROUTE
+    FAVOURITE_ROUTE, PERSONAL_AREA_ROUTE, DEVICES_ROUTE
 } from "../../utils/consts";
 
 import {ReactComponent as WhatsApp} from '../../assets/svg/header/wa.svg'
@@ -140,7 +140,7 @@ const Header = observer(() => {
                 </div>
                 <div style={{display: 'flex', flexFlow: 'row nowrap', alignItems: 'center'}}>
                     <div className="header-bottom__favourite">
-                        <NavLink to={user.isAuth ? `${FAVOURITE_ROUTE}/${userId}` : ''}
+                        <NavLink to={user.isAuth ? `${FAVOURITE_ROUTE}/${userId}` : `${DEVICES_ROUTE}`}
                                  className="header-bottom__favourite-link">
                             <div className="header-bottom__favourite-button--img">
                                 <FavouriteDevice/>
@@ -152,7 +152,7 @@ const Header = observer(() => {
                     </div>
 
                     <div className="header-bottom__cart">
-                        <NavLink to={user.isAuth ? `${CART_ROUTE}/${user.user.id}` : ''}
+                        <NavLink to={user.isAuth ? `${CART_ROUTE}/${user.user.id}` : `${DEVICES_ROUTE}`}
                                  className="header-bottom__cart-link">
                             <div className="header-bottom__cart-button--img">
                                 <Cart/>
